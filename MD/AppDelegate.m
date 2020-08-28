@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#include <stdlib.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    
 
 }
 
@@ -31,6 +33,8 @@
     [NSApp terminate:self];
     return YES;
 }
+
+
 
 
 @end

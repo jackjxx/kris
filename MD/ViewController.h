@@ -10,8 +10,9 @@
 
 @interface ViewController : NSViewController
 
+
 @property(nullable,nonatomic,readonly,strong) NSString *DeviceUDID;
-@property(nonatomic,readonly) NSUInteger *DeviceNum;
+@property(nonatomic,readonly) NSInteger *  DeviceNum;
 
 - (IBAction)RunCMD:(id _Nullable)sender;
 
