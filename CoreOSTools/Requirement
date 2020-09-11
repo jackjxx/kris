@@ -1,0 +1,94 @@
+Panic 目前流程是：
+1. 打开nanokdp看机台是否通信（看有无吐出东西），然后整个流程中一直保持nanokdp打开着，最后会存储为serial log.
+2. 再另开一个teminal，用以下命令判断机台是否为panic，若吐出是”Device is panicked” 或者 “Unable to determine whether device is panicked” ,做接下来的步骤，否则不继续。
+astrisctl --force-kick --host localhost:KanziSWD-315FDB(这个线名不定，做成option，选择) isPanic
+3. 输入 “marvin factory”, 把factory-debug.zip文件捞取出来，路径见下面
+WNJ-C01-2FA-52B-1-BURNIN:tmp gdlocal$ marvin factory
+(marvin v1.0)
+0) KanziSWD-315EE7
+Select probe or 'q': 0
+
+-Factory Info-
+Build Phase: Proto1
+HW Type: J71S
+SW Bundle: ErieTianshan14E1060f
+Test: PreSWDL
+Screen: ABC
+Config: 0024
+S/N: F9FS500HHJ8P
+
+-System Triage-
+Explore
+ Kernel Panic!
+
+Kernel Debug
+ Active Coredump
+ >Failed!
+ Passive Coredump
+ >Passed!
+
+Coproc Debug
+ AOP
+ SIO
+ SEP
+ S3E
+
+-Report-
+Failure
+ anic(cpu 0 caller 0xfffffff025f55838): "apcie[0:s3e]::handleInterrupt: completion timeout linksts=0x00000005 pcielint=0x00800010 linkcdmsts=0x00000200 linkpmgrsts=0x08701e00 (ltssm 0xf=RCVRY_RCVRCFG)\n"
+
+Attach to Radar
+ /tmp/marvin/debug/F9FS500HHJ8P_KanziSWD-315EE7_07.30.14.38.44/factory-debug.zip
+
+Elapsed Time: 17m04s
+!adios!
+CWNJ-C01-2FA-52B-1-BURNIN:tmp gdlocal$ 
+
+4. 对于 第二步，判断结果是 “Unabel to determine whether device is panicked”的，做 Jebdump，步骤如下，等待40多分钟后，自动在桌面生成JebDump.zip文件
+astris -nx KanziSWD-316080 (这个线名不定，做成option，选择)
+astris::console::native::relay swdackdelay 10
+astris::console::native::explore -aponly
+astris::console::native::chip -v list
+jebparam target Cayman B1
+jebdump
+
+
+
+接下来的tool部分功能是 公用的，方法如下：
+
+- 各种模式下修改boot-args功能：
+1): in recovery mode(iBoot)
+] printenv
+] setenv boot-args “debug=0x2014e serial=3 amfi_allow_any_signature=1 cs_enforcement_disable=1 amfi_unrestrict_task_for_pid=1”
+] saveenv
+] reboot
+2): OS Diags
+root# nvram -p
+root# nvram boot-args=“debug=0x2014e serial=3 amfi_allow_any_signature=1 cs_enforcement_disable=1 amfi_unrestrict_task_for_pid=1”
+root# nvram -p
+root# reboot
+3): EFI diags
+nvram --list
+nvram --set  boot-args=“debug=0x2014e serial=3 amfi_allow_any_signature=1 cs_enforcement_disable=1 amfi_unrestrict_task_for_pid=1”
+nvram —save
+nvram —list
+reset
+
+- tcprelay 功能：
+SSH 功能，有时候只有其中一种命令可以使用
+tcprelay --portoffset 3000 ssh & ssh -o NoHostAuthenticationForLocalhost=yes -p 3022 root@localhost
+
+tcprelay --portoffset 1000 ssh & ssh -o NoHostAuthenticationForLocalhost=yes -p 1022 root@localhost
+
+tcprelay --portoffset 2000 ssh & ssh -o NoHostAuthenticationForLocalhost=yes -p 2022 root@localhost
+
+
+- put/get log from devices 功能：
+terminal：tcprelay --locationid 0x14110000 --portoffset 10000 873 23
+将机台里的log抓出来，放在mac mini 桌面上：
+another terminal：rsync -av rsync://root@localhost:10873/root//var/logs /Users/kris/Desktop
+
+将log放进去
+In Terminal(terminal1), “tcprelay --locationid 0x14110000 --portoffset 10000 telnet rsync” 
+cd  想要放进去的文件目录
+rsync -av * rsync://root@localhost:10873/root/var/root

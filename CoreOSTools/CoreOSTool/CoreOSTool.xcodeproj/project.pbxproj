@@ -1,0 +1,573 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2830CF972346A54E005D91F6 /* TcpRelayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2830CF952346A54E005D91F6 /* TcpRelayView.m */; };
+		2830CF982346A54E005D91F6 /* TcpRelayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2830CF962346A54E005D91F6 /* TcpRelayView.xib */; };
+		28C3643B234D004700CDCA9B /* usbfsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C36439234D004700CDCA9B /* usbfsView.m */; };
+		28C3643C234D004700CDCA9B /* usbfsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C3643A234D004700CDCA9B /* usbfsView.xib */; };
+		28C3643F234D334C00CDCA9B /* terminalCmd.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C3643E234D334C00CDCA9B /* terminalCmd.m */; };
+		28C3644223569A5F00CDCA9B /* myShowString.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C3644123569A5F00CDCA9B /* myShowString.m */; };
+		28C36445238F8E3B00CDCA9B /* foundUSB.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C36444238F8E3B00CDCA9B /* foundUSB.m */; };
+		28C36447238FB1C000CDCA9B /* tcprelay in Resources */ = {isa = PBXBuildFile; fileRef = 28C36446238FB1C000CDCA9B /* tcprelay */; };
+		28C36449238FC0A000CDCA9B /* cmdAndpsw.expect in Resources */ = {isa = PBXBuildFile; fileRef = 28C36448238FC0A000CDCA9B /* cmdAndpsw.expect */; };
+		28C3644D2390B5C100CDCA9B /* deviceCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C3644B2390B5C100CDCA9B /* deviceCollectionItem.m */; };
+		28C3644E2390B5C100CDCA9B /* deviceCollectionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C3644C2390B5C100CDCA9B /* deviceCollectionItem.xib */; };
+		28C364512390C44300CDCA9B /* runTerminalCmd.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C364502390C44300CDCA9B /* runTerminalCmd.m */; };
+		28DA94E023427C8600B08A13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DA94DF23427C8600B08A13 /* AppDelegate.m */; };
+		28DA94E323427C8600B08A13 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DA94E223427C8600B08A13 /* ViewController.m */; };
+		28DA94E523427C8C00B08A13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28DA94E423427C8C00B08A13 /* Assets.xcassets */; };
+		28DA94E823427C8C00B08A13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28DA94E623427C8C00B08A13 /* Main.storyboard */; };
+		28DA94EB23427C8C00B08A13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DA94EA23427C8C00B08A13 /* main.m */; };
+		28DA94F62342B7FD00B08A13 /* BootArgs.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DA94F42342B7FD00B08A13 /* BootArgs.m */; };
+		28DA94F72342B7FD00B08A13 /* BootArgs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28DA94F52342B7FD00B08A13 /* BootArgs.xib */; };
+		28DA94FD2344066D00B08A13 /* SerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DA94F92344066C00B08A13 /* SerialPort.m */; };
+		28DA94FE2344066D00B08A13 /* Port.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DA94FB2344066D00B08A13 /* Port.m */; };
+		28DA950023450CD000B08A13 /* CMDList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28DA94FF23450CD000B08A13 /* CMDList.plist */; };
+		91262FD523C4264700123A5A /* usbfs in Resources */ = {isa = PBXBuildFile; fileRef = 91262FD423C4264700123A5A /* usbfs */; };
+		9134E61C23CC625E001D05E1 /* reboot.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9134E61B23CC625E001D05E1 /* reboot.sh */; };
+		9134E61E23CC62CF001D05E1 /* runDeviceLogger.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9134E61D23CC62CF001D05E1 /* runDeviceLogger.sh */; };
+		9134E62023CC633B001D05E1 /* runRsync.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9134E61F23CC633B001D05E1 /* runRsync.sh */; };
+		9134E62223CC63A2001D05E1 /* runSysDiagnose.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9134E62123CC63A2001D05E1 /* runSysDiagnose.sh */; };
+		9134E62423CC6412001D05E1 /* recoveryToOS in Resources */ = {isa = PBXBuildFile; fileRef = 9134E62323CC6412001D05E1 /* recoveryToOS */; };
+		9134E62623CC6427001D05E1 /* OStoRecovery in Resources */ = {isa = PBXBuildFile; fileRef = 9134E62523CC6427001D05E1 /* OStoRecovery */; };
+		9134E62A23CD3CFA001D05E1 /* copyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9134E62723CD3CFA001D05E1 /* copyList.plist */; };
+		9134E62B23CD3CFA001D05E1 /* copyLogs in Resources */ = {isa = PBXBuildFile; fileRef = 9134E62823CD3CFA001D05E1 /* copyLogs */; };
+		9134E62C23CD3CFA001D05E1 /* copyUnrestricted in Resources */ = {isa = PBXBuildFile; fileRef = 9134E62923CD3CFA001D05E1 /* copyUnrestricted */; };
+		9134E63123CD920A001D05E1 /* astrisLogin.expect in Resources */ = {isa = PBXBuildFile; fileRef = 9134E63023CD920A001D05E1 /* astrisLogin.expect */; };
+		9149FC0423C57B28008DA728 /* AstrisCMDList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9149FC0323C57B28008DA728 /* AstrisCMDList.plist */; };
+		9149FC0623C5A9CE008DA728 /* tcprelay.py in Resources */ = {isa = PBXBuildFile; fileRef = 9149FC0523C5A9CE008DA728 /* tcprelay.py */; };
+		9149FC0A23C5AABB008DA728 /* iPhoneX.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9149FC0823C5AABB008DA728 /* iPhoneX.tiff */; };
+		9149FC0B23C5AABB008DA728 /* Kanzi.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 9149FC0923C5AABB008DA728 /* Kanzi.tiff */; };
+		916977EB23BDC56800EF55B7 /* Astris.m in Sources */ = {isa = PBXBuildFile; fileRef = 916977E923BDC56800EF55B7 /* Astris.m */; };
+		916977EC23BDC56800EF55B7 /* Astris.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916977EA23BDC56800EF55B7 /* Astris.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2830CF942346A54E005D91F6 /* TcpRelayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TcpRelayView.h; sourceTree = "<group>"; };
+		2830CF952346A54E005D91F6 /* TcpRelayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TcpRelayView.m; sourceTree = "<group>"; };
+		2830CF962346A54E005D91F6 /* TcpRelayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TcpRelayView.xib; sourceTree = "<group>"; };
+		28C36438234D004700CDCA9B /* usbfsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = usbfsView.h; sourceTree = "<group>"; };
+		28C36439234D004700CDCA9B /* usbfsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = usbfsView.m; sourceTree = "<group>"; };
+		28C3643A234D004700CDCA9B /* usbfsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = usbfsView.xib; sourceTree = "<group>"; };
+		28C3643D234D334C00CDCA9B /* terminalCmd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = terminalCmd.h; sourceTree = "<group>"; };
+		28C3643E234D334C00CDCA9B /* terminalCmd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = terminalCmd.m; sourceTree = "<group>"; };
+		28C3644023569A5F00CDCA9B /* myShowString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myShowString.h; sourceTree = "<group>"; };
+		28C3644123569A5F00CDCA9B /* myShowString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myShowString.m; sourceTree = "<group>"; };
+		28C36443238F8E3B00CDCA9B /* foundUSB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foundUSB.h; sourceTree = "<group>"; };
+		28C36444238F8E3B00CDCA9B /* foundUSB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = foundUSB.m; sourceTree = "<group>"; };
+		28C36446238FB1C000CDCA9B /* tcprelay */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = tcprelay; sourceTree = "<group>"; };
+		28C36448238FC0A000CDCA9B /* cmdAndpsw.expect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cmdAndpsw.expect; sourceTree = "<group>"; };
+		28C3644A2390B5C100CDCA9B /* deviceCollectionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = deviceCollectionItem.h; sourceTree = "<group>"; };
+		28C3644B2390B5C100CDCA9B /* deviceCollectionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = deviceCollectionItem.m; sourceTree = "<group>"; };
+		28C3644C2390B5C100CDCA9B /* deviceCollectionItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = deviceCollectionItem.xib; sourceTree = "<group>"; };
+		28C3644F2390C44300CDCA9B /* runTerminalCmd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = runTerminalCmd.h; sourceTree = "<group>"; };
+		28C364502390C44300CDCA9B /* runTerminalCmd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = runTerminalCmd.m; sourceTree = "<group>"; };
+		28DA94DB23427C8600B08A13 /* Pokonyan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokonyan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28DA94DE23427C8600B08A13 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		28DA94DF23427C8600B08A13 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		28DA94E123427C8600B08A13 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		28DA94E223427C8600B08A13 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		28DA94E423427C8C00B08A13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		28DA94E723427C8C00B08A13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		28DA94E923427C8C00B08A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28DA94EA23427C8C00B08A13 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		28DA94EC23427C8C00B08A13 /* CoreOSTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreOSTool.entitlements; sourceTree = "<group>"; };
+		28DA94F32342B7FD00B08A13 /* BootArgs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BootArgs.h; sourceTree = "<group>"; };
+		28DA94F42342B7FD00B08A13 /* BootArgs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BootArgs.m; sourceTree = "<group>"; };
+		28DA94F52342B7FD00B08A13 /* BootArgs.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BootArgs.xib; sourceTree = "<group>"; };
+		28DA94F92344066C00B08A13 /* SerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialPort.m; sourceTree = "<group>"; };
+		28DA94FA2344066D00B08A13 /* SerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialPort.h; sourceTree = "<group>"; };
+		28DA94FB2344066D00B08A13 /* Port.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Port.m; sourceTree = "<group>"; };
+		28DA94FC2344066D00B08A13 /* Port.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Port.h; sourceTree = "<group>"; };
+		28DA94FF23450CD000B08A13 /* CMDList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CMDList.plist; sourceTree = "<group>"; };
+		91262FD423C4264700123A5A /* usbfs */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = usbfs; sourceTree = "<group>"; };
+		9134E61B23CC625E001D05E1 /* reboot.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = reboot.sh; sourceTree = "<group>"; };
+		9134E61D23CC62CF001D05E1 /* runDeviceLogger.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = runDeviceLogger.sh; sourceTree = "<group>"; };
+		9134E61F23CC633B001D05E1 /* runRsync.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = runRsync.sh; sourceTree = "<group>"; };
+		9134E62123CC63A2001D05E1 /* runSysDiagnose.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = runSysDiagnose.sh; sourceTree = "<group>"; };
+		9134E62323CC6412001D05E1 /* recoveryToOS */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = recoveryToOS; sourceTree = "<group>"; };
+		9134E62523CC6427001D05E1 /* OStoRecovery */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = OStoRecovery; sourceTree = "<group>"; };
+		9134E62723CD3CFA001D05E1 /* copyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = copyList.plist; sourceTree = "<group>"; };
+		9134E62823CD3CFA001D05E1 /* copyLogs */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = copyLogs; sourceTree = "<group>"; };
+		9134E62923CD3CFA001D05E1 /* copyUnrestricted */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = copyUnrestricted; sourceTree = "<group>"; };
+		9134E63023CD920A001D05E1 /* astrisLogin.expect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = astrisLogin.expect; sourceTree = "<group>"; };
+		9149FC0323C57B28008DA728 /* AstrisCMDList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AstrisCMDList.plist; sourceTree = "<group>"; };
+		9149FC0523C5A9CE008DA728 /* tcprelay.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = tcprelay.py; sourceTree = "<group>"; };
+		9149FC0823C5AABB008DA728 /* iPhoneX.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = iPhoneX.tiff; sourceTree = "<group>"; };
+		9149FC0923C5AABB008DA728 /* Kanzi.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Kanzi.tiff; sourceTree = "<group>"; };
+		916977E823BDC56800EF55B7 /* Astris.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Astris.h; sourceTree = "<group>"; };
+		916977E923BDC56800EF55B7 /* Astris.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Astris.m; sourceTree = "<group>"; };
+		916977EA23BDC56800EF55B7 /* Astris.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Astris.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		28DA94D823427C8600B08A13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		28DA94D223427C8600B08A13 = {
+			isa = PBXGroup;
+			children = (
+				28DA94DD23427C8600B08A13 /* CoreOSTool */,
+				9149FC0723C5AA6B008DA728 /* Resource */,
+				28DA94DC23427C8600B08A13 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		28DA94DC23427C8600B08A13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				28DA94DB23427C8600B08A13 /* Pokonyan.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28DA94DD23427C8600B08A13 /* CoreOSTool */ = {
+			isa = PBXGroup;
+			children = (
+				28DA94DE23427C8600B08A13 /* AppDelegate.h */,
+				28DA94DF23427C8600B08A13 /* AppDelegate.m */,
+				28DA94E123427C8600B08A13 /* ViewController.h */,
+				28DA94E223427C8600B08A13 /* ViewController.m */,
+				91262FD123C2C45E00123A5A /* Astris */,
+				916977EE23BDD9DA00EF55B7 /* BootArgs */,
+				916977ED23BDD99900EF55B7 /* TcpRelpay */,
+				916977EF23BDD9F700EF55B7 /* usbfs */,
+				28DA94F82342BC3800B08A13 /* IO */,
+				28DA94E423427C8C00B08A13 /* Assets.xcassets */,
+				28DA94E623427C8C00B08A13 /* Main.storyboard */,
+				28C3643D234D334C00CDCA9B /* terminalCmd.h */,
+				28C3643E234D334C00CDCA9B /* terminalCmd.m */,
+				28C36443238F8E3B00CDCA9B /* foundUSB.h */,
+				28C36444238F8E3B00CDCA9B /* foundUSB.m */,
+				28C3644F2390C44300CDCA9B /* runTerminalCmd.h */,
+				28C364502390C44300CDCA9B /* runTerminalCmd.m */,
+				28C3644A2390B5C100CDCA9B /* deviceCollectionItem.h */,
+				28C3644B2390B5C100CDCA9B /* deviceCollectionItem.m */,
+				28C3644C2390B5C100CDCA9B /* deviceCollectionItem.xib */,
+				28DA94E923427C8C00B08A13 /* Info.plist */,
+				28C36448238FC0A000CDCA9B /* cmdAndpsw.expect */,
+				28DA94EA23427C8C00B08A13 /* main.m */,
+				28DA94EC23427C8C00B08A13 /* CoreOSTool.entitlements */,
+			);
+			path = CoreOSTool;
+			sourceTree = "<group>";
+		};
+		28DA94F82342BC3800B08A13 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				28DA94FC2344066D00B08A13 /* Port.h */,
+				28DA94FB2344066D00B08A13 /* Port.m */,
+				28DA94FA2344066D00B08A13 /* SerialPort.h */,
+				28DA94F92344066C00B08A13 /* SerialPort.m */,
+				28C3644023569A5F00CDCA9B /* myShowString.h */,
+				28C3644123569A5F00CDCA9B /* myShowString.m */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
+		91262FD123C2C45E00123A5A /* Astris */ = {
+			isa = PBXGroup;
+			children = (
+				9134E63023CD920A001D05E1 /* astrisLogin.expect */,
+				916977E823BDC56800EF55B7 /* Astris.h */,
+				916977E923BDC56800EF55B7 /* Astris.m */,
+				916977EA23BDC56800EF55B7 /* Astris.xib */,
+				9149FC0323C57B28008DA728 /* AstrisCMDList.plist */,
+			);
+			path = Astris;
+			sourceTree = "<group>";
+		};
+		9149FC0723C5AA6B008DA728 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				9134E62723CD3CFA001D05E1 /* copyList.plist */,
+				9134E62823CD3CFA001D05E1 /* copyLogs */,
+				9134E62923CD3CFA001D05E1 /* copyUnrestricted */,
+				9134E62323CC6412001D05E1 /* recoveryToOS */,
+				9134E62523CC6427001D05E1 /* OStoRecovery */,
+				9134E62123CC63A2001D05E1 /* runSysDiagnose.sh */,
+				9134E61F23CC633B001D05E1 /* runRsync.sh */,
+				9134E61D23CC62CF001D05E1 /* runDeviceLogger.sh */,
+				9134E61B23CC625E001D05E1 /* reboot.sh */,
+				91262FD423C4264700123A5A /* usbfs */,
+				28C36446238FB1C000CDCA9B /* tcprelay */,
+				9149FC0823C5AABB008DA728 /* iPhoneX.tiff */,
+				9149FC0923C5AABB008DA728 /* Kanzi.tiff */,
+				9149FC0523C5A9CE008DA728 /* tcprelay.py */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		916977ED23BDD99900EF55B7 /* TcpRelpay */ = {
+			isa = PBXGroup;
+			children = (
+				2830CF942346A54E005D91F6 /* TcpRelayView.h */,
+				2830CF952346A54E005D91F6 /* TcpRelayView.m */,
+				2830CF962346A54E005D91F6 /* TcpRelayView.xib */,
+			);
+			path = TcpRelpay;
+			sourceTree = "<group>";
+		};
+		916977EE23BDD9DA00EF55B7 /* BootArgs */ = {
+			isa = PBXGroup;
+			children = (
+				28DA94F32342B7FD00B08A13 /* BootArgs.h */,
+				28DA94F42342B7FD00B08A13 /* BootArgs.m */,
+				28DA94F52342B7FD00B08A13 /* BootArgs.xib */,
+				28DA94FF23450CD000B08A13 /* CMDList.plist */,
+			);
+			path = BootArgs;
+			sourceTree = "<group>";
+		};
+		916977EF23BDD9F700EF55B7 /* usbfs */ = {
+			isa = PBXGroup;
+			children = (
+				28C36438234D004700CDCA9B /* usbfsView.h */,
+				28C36439234D004700CDCA9B /* usbfsView.m */,
+				28C3643A234D004700CDCA9B /* usbfsView.xib */,
+			);
+			path = usbfs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		28DA94DA23427C8600B08A13 /* CoreOSTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28DA94EF23427C8C00B08A13 /* Build configuration list for PBXNativeTarget "CoreOSTool" */;
+			buildPhases = (
+				28DA94D723427C8600B08A13 /* Sources */,
+				28DA94D823427C8600B08A13 /* Frameworks */,
+				28DA94D923427C8600B08A13 /* Resources */,
+				9149FC0C23C62959008DA728 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreOSTool;
+			productName = CoreOSTool;
+			productReference = 28DA94DB23427C8600B08A13 /* Pokonyan.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		28DA94D323427C8600B08A13 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = ASD;
+				TargetAttributes = {
+					28DA94DA23427C8600B08A13 = {
+						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 28DA94D623427C8600B08A13 /* Build configuration list for PBXProject "CoreOSTool" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 28DA94D223427C8600B08A13;
+			productRefGroup = 28DA94DC23427C8600B08A13 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				28DA94DA23427C8600B08A13 /* CoreOSTool */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		28DA94D923427C8600B08A13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9134E63123CD920A001D05E1 /* astrisLogin.expect in Resources */,
+				9134E62023CC633B001D05E1 /* runRsync.sh in Resources */,
+				91262FD523C4264700123A5A /* usbfs in Resources */,
+				28C36449238FC0A000CDCA9B /* cmdAndpsw.expect in Resources */,
+				28DA94E523427C8C00B08A13 /* Assets.xcassets in Resources */,
+				9149FC0623C5A9CE008DA728 /* tcprelay.py in Resources */,
+				28DA94E823427C8C00B08A13 /* Main.storyboard in Resources */,
+				9149FC0B23C5AABB008DA728 /* Kanzi.tiff in Resources */,
+				916977EC23BDC56800EF55B7 /* Astris.xib in Resources */,
+				28C3643C234D004700CDCA9B /* usbfsView.xib in Resources */,
+				9134E62223CC63A2001D05E1 /* runSysDiagnose.sh in Resources */,
+				9149FC0423C57B28008DA728 /* AstrisCMDList.plist in Resources */,
+				9134E61E23CC62CF001D05E1 /* runDeviceLogger.sh in Resources */,
+				9134E62423CC6412001D05E1 /* recoveryToOS in Resources */,
+				9149FC0A23C5AABB008DA728 /* iPhoneX.tiff in Resources */,
+				28DA94F72342B7FD00B08A13 /* BootArgs.xib in Resources */,
+				9134E62C23CD3CFA001D05E1 /* copyUnrestricted in Resources */,
+				9134E62A23CD3CFA001D05E1 /* copyList.plist in Resources */,
+				9134E62623CC6427001D05E1 /* OStoRecovery in Resources */,
+				28C3644E2390B5C100CDCA9B /* deviceCollectionItem.xib in Resources */,
+				28DA950023450CD000B08A13 /* CMDList.plist in Resources */,
+				9134E61C23CC625E001D05E1 /* reboot.sh in Resources */,
+				28C36447238FB1C000CDCA9B /* tcprelay in Resources */,
+				2830CF982346A54E005D91F6 /* TcpRelayView.xib in Resources */,
+				9134E62B23CD3CFA001D05E1 /* copyLogs in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9149FC0C23C62959008DA728 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		28DA94D723427C8600B08A13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28C364512390C44300CDCA9B /* runTerminalCmd.m in Sources */,
+				28C3643F234D334C00CDCA9B /* terminalCmd.m in Sources */,
+				28DA94FE2344066D00B08A13 /* Port.m in Sources */,
+				28DA94FD2344066D00B08A13 /* SerialPort.m in Sources */,
+				2830CF972346A54E005D91F6 /* TcpRelayView.m in Sources */,
+				28DA94E323427C8600B08A13 /* ViewController.m in Sources */,
+				28C3643B234D004700CDCA9B /* usbfsView.m in Sources */,
+				28DA94EB23427C8C00B08A13 /* main.m in Sources */,
+				28C36445238F8E3B00CDCA9B /* foundUSB.m in Sources */,
+				28C3644D2390B5C100CDCA9B /* deviceCollectionItem.m in Sources */,
+				28C3644223569A5F00CDCA9B /* myShowString.m in Sources */,
+				916977EB23BDC56800EF55B7 /* Astris.m in Sources */,
+				28DA94F62342B7FD00B08A13 /* BootArgs.m in Sources */,
+				28DA94E023427C8600B08A13 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		28DA94E623427C8C00B08A13 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28DA94E723427C8C00B08A13 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		28DA94ED23427C8C00B08A13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		28DA94EE23427C8C00B08A13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		28DA94F023427C8C00B08A13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				INFOPLIST_FILE = CoreOSTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = asd.CoreOSTool;
+				PRODUCT_NAME = Pokonyan;
+				USER_HEADER_SEARCH_PATHS = CoreOSTool/;
+				USE_HEADERMAP = YES;
+			};
+			name = Debug;
+		};
+		28DA94F123427C8C00B08A13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				INFOPLIST_FILE = CoreOSTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = asd.CoreOSTool;
+				PRODUCT_NAME = Pokonyan;
+				USER_HEADER_SEARCH_PATHS = CoreOSTool/;
+				USE_HEADERMAP = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28DA94D623427C8600B08A13 /* Build configuration list for PBXProject "CoreOSTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28DA94ED23427C8C00B08A13 /* Debug */,
+				28DA94EE23427C8C00B08A13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		28DA94EF23427C8C00B08A13 /* Build configuration list for PBXNativeTarget "CoreOSTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28DA94F023427C8C00B08A13 /* Debug */,
+				28DA94F123427C8C00B08A13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 28DA94D323427C8600B08A13 /* Project object */;
+}

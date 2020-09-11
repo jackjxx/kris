@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Manual</key>
+	<array/>
+	<key>Jebdump</key>
+	<array>
+		<string>/usr/local/bin/astris -nx KanziSWD-&quot;#&quot;</string>
+		<string>astris::console::native::relay swdackdelay 10</string>
+		<string>astris::console::native::explore -aponly</string>
+		<string>astris::console::native::chip -v list</string>
+		<string>jebparam target &quot;$&quot;</string>
+	</array>
+</dict>
+</plist>

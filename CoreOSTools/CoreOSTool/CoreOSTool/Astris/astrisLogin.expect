@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+
+set cable_name [lindex $argv 0]
+set cmd [lindex $argv 1]
+
+spawn /usr/local/bin/astris -nx KanziSWD-$cable_name
+expect "NO CPU >"
+send $cmd+"\n"
+
+#interact

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>iBoot</key>
+	<array>
+		<string>printenv</string>
+		<string>setenv boot-args &quot;#&quot;</string>
+		<string>saveenv</string>
+		<string>reboot</string>
+	</array>
+	<key>OS Diags</key>
+	<array>
+		<string>nvram -p</string>
+		<string>nvram boot-args=&quot;#&quot;</string>
+		<string>nvram -p</string>
+		<string>reboot</string>
+	</array>
+	<key>EFI Diags</key>
+	<array>
+		<string>nvram --list</string>
+		<string>nvram --set  boot-args=&quot;#&quot;</string>
+		<string>nvram --save</string>
+		<string>nvram --list</string>
+		<string>reset</string>
+	</array>
+</dict>
+</plist>

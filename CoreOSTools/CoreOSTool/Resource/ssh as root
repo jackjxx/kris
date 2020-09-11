@@ -1,0 +1,36 @@
+#!/usr/bin/expect
+
+set offset [lindex $argv 0]
+set offset [expr $offset+22]
+set username "root"
+set password "alpine"
+set timeout 60
+
+# trap SIGWINCH and pass to spawned process
+trap {
+ set rows [stty rows]
+ set cols [stty columns]
+ stty rows $rows columns $cols < $spawn_out(slave,name)
+} WINCH
+
+spawn ssh -o NoHostAuthenticationForLocalhost=yes -p $offset $username@localhost
+while { 1 } {
+    expect  "Are you sure you want to continue connecting (yes/no)" {
+        send "yes\r" 
+    } "password:" { 
+        send "$password\r" 
+    } "#" {
+         interact
+         break
+    } "mobile" {
+         interact
+         break
+    } -nocase -re "mobile.*(%|#|\\$)" { 
+		interact
+		break
+	} -nocase -re "root.*(%|#|\\$)" { 
+		interact
+		break
+	}
+}
+

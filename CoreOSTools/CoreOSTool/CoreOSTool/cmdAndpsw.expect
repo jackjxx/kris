@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+# Description: download source code from git server
+#	@param log path: git server password
+#	@param path: the path keep code
+
+
+set getPath [lindex $argv 0]
+set putPath [lindex $argv 1]
+
+spawn rsync -av $getPath $putPath
+expect "Password:"
+send "alpine\n"
+
+interact
