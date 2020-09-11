@@ -1,0 +1,1079 @@
+Help on class QWidget in module PyQt5.QtWidgets:
+
+class QWidget(PyQt5.QtCore.QObject, PyQt5.QtGui.QPaintDevice)
+ |  QWidget(parent: QWidget = None, flags: Union[Qt.WindowFlags, Qt.WindowType] = Qt.WindowFlags())
+ |  
+ |  Method resolution order:
+ |      QWidget
+ |      PyQt5.QtCore.QObject
+ |      sip.wrapper
+ |      PyQt5.QtGui.QPaintDevice
+ |      sip.simplewrapper
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  acceptDrops(...)
+ |      acceptDrops(self) -> bool
+ |  
+ |  accessibleDescription(...)
+ |      accessibleDescription(self) -> str
+ |  
+ |  accessibleName(...)
+ |      accessibleName(self) -> str
+ |  
+ |  actionEvent(...)
+ |      actionEvent(self, QActionEvent)
+ |  
+ |  actions(...)
+ |      actions(self) -> List[QAction]
+ |  
+ |  activateWindow(...)
+ |      activateWindow(self)
+ |  
+ |  addAction(...)
+ |      addAction(self, QAction)
+ |  
+ |  addActions(...)
+ |      addActions(self, Iterable[QAction])
+ |  
+ |  adjustSize(...)
+ |      adjustSize(self)
+ |  
+ |  autoFillBackground(...)
+ |      autoFillBackground(self) -> bool
+ |  
+ |  backgroundRole(...)
+ |      backgroundRole(self) -> QPalette.ColorRole
+ |  
+ |  baseSize(...)
+ |      baseSize(self) -> QSize
+ |  
+ |  changeEvent(...)
+ |      changeEvent(self, QEvent)
+ |  
+ |  childAt(...)
+ |      childAt(self, QPoint) -> QWidget
+ |      childAt(self, int, int) -> QWidget
+ |  
+ |  childrenRect(...)
+ |      childrenRect(self) -> QRect
+ |  
+ |  childrenRegion(...)
+ |      childrenRegion(self) -> QRegion
+ |  
+ |  clearFocus(...)
+ |      clearFocus(self)
+ |  
+ |  clearMask(...)
+ |      clearMask(self)
+ |  
+ |  close(...)
+ |      close(self) -> bool
+ |  
+ |  closeEvent(...)
+ |      closeEvent(self, QCloseEvent)
+ |  
+ |  contentsMargins(...)
+ |      contentsMargins(self) -> QMargins
+ |  
+ |  contentsRect(...)
+ |      contentsRect(self) -> QRect
+ |  
+ |  contextMenuEvent(...)
+ |      contextMenuEvent(self, QContextMenuEvent)
+ |  
+ |  contextMenuPolicy(...)
+ |      contextMenuPolicy(self) -> Qt.ContextMenuPolicy
+ |  
+ |  create(...)
+ |      create(self, window: sip.voidptr = 0, initializeWindow: bool = True, destroyOldWindow: bool = True)
+ |  
+ |  createWindowContainer(...)
+ |      createWindowContainer(QWindow, parent: QWidget = None, flags: Union[Qt.WindowFlags, Qt.WindowType] = 0) -> QWidget
+ |  
+ |  cursor(...)
+ |      cursor(self) -> QCursor
+ |  
+ |  customContextMenuRequested = <unbound PYQT_SIGNAL customContextMenuRequested(QPoint)>
+ |  destroy(...)
+ |      destroy(self, destroyWindow: bool = True, destroySubWindows: bool = True)
+ |  
+ |  devType(...)
+ |      devType(self) -> int
+ |  
+ |  dragEnterEvent(...)
+ |      dragEnterEvent(self, QDragEnterEvent)
+ |  
+ |  dragLeaveEvent(...)
+ |      dragLeaveEvent(self, QDragLeaveEvent)
+ |  
+ |  dragMoveEvent(...)
+ |      dragMoveEvent(self, QDragMoveEvent)
+ |  
+ |  dropEvent(...)
+ |      dropEvent(self, QDropEvent)
+ |  
+ |  effectiveWinId(...)
+ |      effectiveWinId(self) -> sip.voidptr
+ |  
+ |  ensurePolished(...)
+ |      ensurePolished(self)
+ |  
+ |  enterEvent(...)
+ |      enterEvent(self, QEvent)
+ |  
+ |  event(...)
+ |      event(self, QEvent) -> bool
+ |  
+ |  find(...)
+ |      find(sip.voidptr) -> QWidget
+ |  
+ |  focusInEvent(...)
+ |      focusInEvent(self, QFocusEvent)
+ |  
+ |  focusNextChild(...)
+ |      focusNextChild(self) -> bool
+ |  
+ |  focusNextPrevChild(...)
+ |      focusNextPrevChild(self, bool) -> bool
+ |  
+ |  focusOutEvent(...)
+ |      focusOutEvent(self, QFocusEvent)
+ |  
+ |  focusPolicy(...)
+ |      focusPolicy(self) -> Qt.FocusPolicy
+ |  
+ |  focusPreviousChild(...)
+ |      focusPreviousChild(self) -> bool
+ |  
+ |  focusProxy(...)
+ |      focusProxy(self) -> QWidget
+ |  
+ |  focusWidget(...)
+ |      focusWidget(self) -> QWidget
+ |  
+ |  font(...)
+ |      font(self) -> QFont
+ |  
+ |  fontInfo(...)
+ |      fontInfo(self) -> QFontInfo
+ |  
+ |  fontMetrics(...)
+ |      fontMetrics(self) -> QFontMetrics
+ |  
+ |  foregroundRole(...)
+ |      foregroundRole(self) -> QPalette.ColorRole
+ |  
+ |  frameGeometry(...)
+ |      frameGeometry(self) -> QRect
+ |  
+ |  frameSize(...)
+ |      frameSize(self) -> QSize
+ |  
+ |  geometry(...)
+ |      geometry(self) -> QRect
+ |  
+ |  getContentsMargins(...)
+ |      getContentsMargins(self) -> Tuple[int, int, int, int]
+ |  
+ |  grab(...)
+ |      grab(self, rectangle: QRect = QRect(QPoint(0,0),QSize(-1,-1))) -> QPixmap
+ |  
+ |  grabGesture(...)
+ |      grabGesture(self, Qt.GestureType, flags: Union[Qt.GestureFlags, Qt.GestureFlag] = Qt.GestureFlags())
+ |  
+ |  grabKeyboard(...)
+ |      grabKeyboard(self)
+ |  
+ |  grabMouse(...)
+ |      grabMouse(self)
+ |      grabMouse(self, Union[QCursor, Qt.CursorShape])
+ |  
+ |  grabShortcut(...)
+ |      grabShortcut(self, Union[QKeySequence, QKeySequence.StandardKey, str, int], context: Qt.ShortcutContext = Qt.WindowShortcut) -> int
+ |  
+ |  graphicsEffect(...)
+ |      graphicsEffect(self) -> QGraphicsEffect
+ |  
+ |  graphicsProxyWidget(...)
+ |      graphicsProxyWidget(self) -> QGraphicsProxyWidget
+ |  
+ |  hasFocus(...)
+ |      hasFocus(self) -> bool
+ |  
+ |  hasHeightForWidth(...)
+ |      hasHeightForWidth(self) -> bool
+ |  
+ |  hasMouseTracking(...)
+ |      hasMouseTracking(self) -> bool
+ |  
+ |  hasTabletTracking(...)
+ |      hasTabletTracking(self) -> bool
+ |  
+ |  height(...)
+ |      height(self) -> int
+ |  
+ |  heightForWidth(...)
+ |      heightForWidth(self, int) -> int
+ |  
+ |  hide(...)
+ |      hide(self)
+ |  
+ |  hideEvent(...)
+ |      hideEvent(self, QHideEvent)
+ |  
+ |  initPainter(...)
+ |      initPainter(self, QPainter)
+ |  
+ |  inputMethodEvent(...)
+ |      inputMethodEvent(self, QInputMethodEvent)
+ |  
+ |  inputMethodHints(...)
+ |      inputMethodHints(self) -> Qt.InputMethodHints
+ |  
+ |  inputMethodQuery(...)
+ |      inputMethodQuery(self, Qt.InputMethodQuery) -> Any
+ |  
+ |  insertAction(...)
+ |      insertAction(self, QAction, QAction)
+ |  
+ |  insertActions(...)
+ |      insertActions(self, QAction, Iterable[QAction])
+ |  
+ |  isActiveWindow(...)
+ |      isActiveWindow(self) -> bool
+ |  
+ |  isAncestorOf(...)
+ |      isAncestorOf(self, QWidget) -> bool
+ |  
+ |  isEnabled(...)
+ |      isEnabled(self) -> bool
+ |  
+ |  isEnabledTo(...)
+ |      isEnabledTo(self, QWidget) -> bool
+ |  
+ |  isFullScreen(...)
+ |      isFullScreen(self) -> bool
+ |  
+ |  isHidden(...)
+ |      isHidden(self) -> bool
+ |  
+ |  isLeftToRight(...)
+ |      isLeftToRight(self) -> bool
+ |  
+ |  isMaximized(...)
+ |      isMaximized(self) -> bool
+ |  
+ |  isMinimized(...)
+ |      isMinimized(self) -> bool
+ |  
+ |  isModal(...)
+ |      isModal(self) -> bool
+ |  
+ |  isRightToLeft(...)
+ |      isRightToLeft(self) -> bool
+ |  
+ |  isVisible(...)
+ |      isVisible(self) -> bool
+ |  
+ |  isVisibleTo(...)
+ |      isVisibleTo(self, QWidget) -> bool
+ |  
+ |  isWindow(...)
+ |      isWindow(self) -> bool
+ |  
+ |  isWindowModified(...)
+ |      isWindowModified(self) -> bool
+ |  
+ |  keyPressEvent(...)
+ |      keyPressEvent(self, QKeyEvent)
+ |  
+ |  keyReleaseEvent(...)
+ |      keyReleaseEvent(self, QKeyEvent)
+ |  
+ |  keyboardGrabber(...)
+ |      keyboardGrabber() -> QWidget
+ |  
+ |  layout(...)
+ |      layout(self) -> QLayout
+ |  
+ |  layoutDirection(...)
+ |      layoutDirection(self) -> Qt.LayoutDirection
+ |  
+ |  leaveEvent(...)
+ |      leaveEvent(self, QEvent)
+ |  
+ |  locale(...)
+ |      locale(self) -> QLocale
+ |  
+ |  lower(...)
+ |      lower(self)
+ |  
+ |  mapFrom(...)
+ |      mapFrom(self, QWidget, QPoint) -> QPoint
+ |  
+ |  mapFromGlobal(...)
+ |      mapFromGlobal(self, QPoint) -> QPoint
+ |  
+ |  mapFromParent(...)
+ |      mapFromParent(self, QPoint) -> QPoint
+ |  
+ |  mapTo(...)
+ |      mapTo(self, QWidget, QPoint) -> QPoint
+ |  
+ |  mapToGlobal(...)
+ |      mapToGlobal(self, QPoint) -> QPoint
+ |  
+ |  mapToParent(...)
+ |      mapToParent(self, QPoint) -> QPoint
+ |  
+ |  mask(...)
+ |      mask(self) -> QRegion
+ |  
+ |  maximumHeight(...)
+ |      maximumHeight(self) -> int
+ |  
+ |  maximumSize(...)
+ |      maximumSize(self) -> QSize
+ |  
+ |  maximumWidth(...)
+ |      maximumWidth(self) -> int
+ |  
+ |  metric(...)
+ |      metric(self, QPaintDevice.PaintDeviceMetric) -> int
+ |  
+ |  minimumHeight(...)
+ |      minimumHeight(self) -> int
+ |  
+ |  minimumSize(...)
+ |      minimumSize(self) -> QSize
+ |  
+ |  minimumSizeHint(...)
+ |      minimumSizeHint(self) -> QSize
+ |  
+ |  minimumWidth(...)
+ |      minimumWidth(self) -> int
+ |  
+ |  mouseDoubleClickEvent(...)
+ |      mouseDoubleClickEvent(self, QMouseEvent)
+ |  
+ |  mouseGrabber(...)
+ |      mouseGrabber() -> QWidget
+ |  
+ |  mouseMoveEvent(...)
+ |      mouseMoveEvent(self, QMouseEvent)
+ |  
+ |  mousePressEvent(...)
+ |      mousePressEvent(self, QMouseEvent)
+ |  
+ |  mouseReleaseEvent(...)
+ |      mouseReleaseEvent(self, QMouseEvent)
+ |  
+ |  move(...)
+ |      move(self, QPoint)
+ |      move(self, int, int)
+ |  
+ |  moveEvent(...)
+ |      moveEvent(self, QMoveEvent)
+ |  
+ |  nativeEvent(...)
+ |      nativeEvent(self, Union[QByteArray, bytes, bytearray], sip.voidptr) -> Tuple[bool, int]
+ |  
+ |  nativeParentWidget(...)
+ |      nativeParentWidget(self) -> QWidget
+ |  
+ |  nextInFocusChain(...)
+ |      nextInFocusChain(self) -> QWidget
+ |  
+ |  normalGeometry(...)
+ |      normalGeometry(self) -> QRect
+ |  
+ |  overrideWindowFlags(...)
+ |      overrideWindowFlags(self, Union[Qt.WindowFlags, Qt.WindowType])
+ |  
+ |  overrideWindowState(...)
+ |      overrideWindowState(self, Union[Qt.WindowStates, Qt.WindowState])
+ |  
+ |  paintEngine(...)
+ |      paintEngine(self) -> QPaintEngine
+ |  
+ |  paintEvent(...)
+ |      paintEvent(self, QPaintEvent)
+ |  
+ |  palette(...)
+ |      palette(self) -> QPalette
+ |  
+ |  parentWidget(...)
+ |      parentWidget(self) -> QWidget
+ |  
+ |  pos(...)
+ |      pos(self) -> QPoint
+ |  
+ |  previousInFocusChain(...)
+ |      previousInFocusChain(self) -> QWidget
+ |  
+ |  raise_(...)
+ |      raise_(self)
+ |  
+ |  rect(...)
+ |      rect(self) -> QRect
+ |  
+ |  releaseKeyboard(...)
+ |      releaseKeyboard(self)
+ |  
+ |  releaseMouse(...)
+ |      releaseMouse(self)
+ |  
+ |  releaseShortcut(...)
+ |      releaseShortcut(self, int)
+ |  
+ |  removeAction(...)
+ |      removeAction(self, QAction)
+ |  
+ |  render(...)
+ |      render(self, QPaintDevice, targetOffset: QPoint = QPoint(), sourceRegion: QRegion = QRegion(), flags: Union[QWidget.RenderFlags, QWidget.RenderFlag] = QWidget.RenderFlags(QWidget.RenderFlag.DrawWindowBackground|QWidget.RenderFlag.DrawChildren))
+ |      render(self, QPainter, targetOffset: QPoint = QPoint(), sourceRegion: QRegion = QRegion(), flags: Union[QWidget.RenderFlags, QWidget.RenderFlag] = QWidget.RenderFlags(QWidget.RenderFlag.DrawWindowBackground|QWidget.RenderFlag.DrawChildren))
+ |  
+ |  repaint(...)
+ |      repaint(self)
+ |      repaint(self, int, int, int, int)
+ |      repaint(self, QRect)
+ |      repaint(self, QRegion)
+ |  
+ |  resize(...)
+ |      resize(self, QSize)
+ |      resize(self, int, int)
+ |  
+ |  resizeEvent(...)
+ |      resizeEvent(self, QResizeEvent)
+ |  
+ |  restoreGeometry(...)
+ |      restoreGeometry(self, Union[QByteArray, bytes, bytearray]) -> bool
+ |  
+ |  saveGeometry(...)
+ |      saveGeometry(self) -> QByteArray
+ |  
+ |  screen(...)
+ |      screen(self) -> QScreen
+ |  
+ |  scroll(...)
+ |      scroll(self, int, int)
+ |      scroll(self, int, int, QRect)
+ |  
+ |  setAcceptDrops(...)
+ |      setAcceptDrops(self, bool)
+ |  
+ |  setAccessibleDescription(...)
+ |      setAccessibleDescription(self, str)
+ |  
+ |  setAccessibleName(...)
+ |      setAccessibleName(self, str)
+ |  
+ |  setAttribute(...)
+ |      setAttribute(self, Qt.WidgetAttribute, on: bool = True)
+ |  
+ |  setAutoFillBackground(...)
+ |      setAutoFillBackground(self, bool)
+ |  
+ |  setBackgroundRole(...)
+ |      setBackgroundRole(self, QPalette.ColorRole)
+ |  
+ |  setBaseSize(...)
+ |      setBaseSize(self, int, int)
+ |      setBaseSize(self, QSize)
+ |  
+ |  setContentsMargins(...)
+ |      setContentsMargins(self, int, int, int, int)
+ |      setContentsMargins(self, QMargins)
+ |  
+ |  setContextMenuPolicy(...)
+ |      setContextMenuPolicy(self, Qt.ContextMenuPolicy)
+ |  
+ |  setCursor(...)
+ |      setCursor(self, Union[QCursor, Qt.CursorShape])
+ |  
+ |  setDisabled(...)
+ |      setDisabled(self, bool)
+ |  
+ |  setEnabled(...)
+ |      setEnabled(self, bool)
+ |  
+ |  setFixedHeight(...)
+ |      setFixedHeight(self, int)
+ |  
+ |  setFixedSize(...)
+ |      setFixedSize(self, QSize)
+ |      setFixedSize(self, int, int)
+ |  
+ |  setFixedWidth(...)
+ |      setFixedWidth(self, int)
+ |  
+ |  setFocus(...)
+ |      setFocus(self)
+ |      setFocus(self, Qt.FocusReason)
+ |  
+ |  setFocusPolicy(...)
+ |      setFocusPolicy(self, Qt.FocusPolicy)
+ |  
+ |  setFocusProxy(...)
+ |      setFocusProxy(self, QWidget)
+ |  
+ |  setFont(...)
+ |      setFont(self, QFont)
+ |  
+ |  setForegroundRole(...)
+ |      setForegroundRole(self, QPalette.ColorRole)
+ |  
+ |  setGeometry(...)
+ |      setGeometry(self, QRect)
+ |      setGeometry(self, int, int, int, int)
+ |  
+ |  setGraphicsEffect(...)
+ |      setGraphicsEffect(self, QGraphicsEffect)
+ |  
+ |  setHidden(...)
+ |      setHidden(self, bool)
+ |  
+ |  setInputMethodHints(...)
+ |      setInputMethodHints(self, Union[Qt.InputMethodHints, Qt.InputMethodHint])
+ |  
+ |  setLayout(...)
+ |      setLayout(self, QLayout)
+ |  
+ |  setLayoutDirection(...)
+ |      setLayoutDirection(self, Qt.LayoutDirection)
+ |  
+ |  setLocale(...)
+ |      setLocale(self, QLocale)
+ |  
+ |  setMask(...)
+ |      setMask(self, QBitmap)
+ |      setMask(self, QRegion)
+ |  
+ |  setMaximumHeight(...)
+ |      setMaximumHeight(self, int)
+ |  
+ |  setMaximumSize(...)
+ |      setMaximumSize(self, int, int)
+ |      setMaximumSize(self, QSize)
+ |  
+ |  setMaximumWidth(...)
+ |      setMaximumWidth(self, int)
+ |  
+ |  setMinimumHeight(...)
+ |      setMinimumHeight(self, int)
+ |  
+ |  setMinimumSize(...)
+ |      setMinimumSize(self, int, int)
+ |      setMinimumSize(self, QSize)
+ |  
+ |  setMinimumWidth(...)
+ |      setMinimumWidth(self, int)
+ |  
+ |  setMouseTracking(...)
+ |      setMouseTracking(self, bool)
+ |  
+ |  setPalette(...)
+ |      setPalette(self, QPalette)
+ |  
+ |  setParent(...)
+ |      setParent(self, QWidget)
+ |      setParent(self, QWidget, Union[Qt.WindowFlags, Qt.WindowType])
+ |  
+ |  setShortcutAutoRepeat(...)
+ |      setShortcutAutoRepeat(self, int, enabled: bool = True)
+ |  
+ |  setShortcutEnabled(...)
+ |      setShortcutEnabled(self, int, enabled: bool = True)
+ |  
+ |  setSizeIncrement(...)
+ |      setSizeIncrement(self, int, int)
+ |      setSizeIncrement(self, QSize)
+ |  
+ |  setSizePolicy(...)
+ |      setSizePolicy(self, QSizePolicy)
+ |      setSizePolicy(self, QSizePolicy.Policy, QSizePolicy.Policy)
+ |  
+ |  setStatusTip(...)
+ |      setStatusTip(self, str)
+ |  
+ |  setStyle(...)
+ |      setStyle(self, QStyle)
+ |  
+ |  setStyleSheet(...)
+ |      setStyleSheet(self, str)
+ |  
+ |  setTabOrder(...)
+ |      setTabOrder(QWidget, QWidget)
+ |  
+ |  setTabletTracking(...)
+ |      setTabletTracking(self, bool)
+ |  
+ |  setToolTip(...)
+ |      setToolTip(self, str)
+ |  
+ |  setToolTipDuration(...)
+ |      setToolTipDuration(self, int)
+ |  
+ |  setUpdatesEnabled(...)
+ |      setUpdatesEnabled(self, bool)
+ |  
+ |  setVisible(...)
+ |      setVisible(self, bool)
+ |  
+ |  setWhatsThis(...)
+ |      setWhatsThis(self, str)
+ |  
+ |  setWindowFilePath(...)
+ |      setWindowFilePath(self, str)
+ |  
+ |  setWindowFlag(...)
+ |      setWindowFlag(self, Qt.WindowType, on: bool = True)
+ |  
+ |  setWindowFlags(...)
+ |      setWindowFlags(self, Union[Qt.WindowFlags, Qt.WindowType])
+ |  
+ |  setWindowIcon(...)
+ |      setWindowIcon(self, QIcon)
+ |  
+ |  setWindowIconText(...)
+ |      setWindowIconText(self, str)
+ |  
+ |  setWindowModality(...)
+ |      setWindowModality(self, Qt.WindowModality)
+ |  
+ |  setWindowModified(...)
+ |      setWindowModified(self, bool)
+ |  
+ |  setWindowOpacity(...)
+ |      setWindowOpacity(self, float)
+ |  
+ |  setWindowRole(...)
+ |      setWindowRole(self, str)
+ |  
+ |  setWindowState(...)
+ |      setWindowState(self, Union[Qt.WindowStates, Qt.WindowState])
+ |  
+ |  setWindowTitle(...)
+ |      setWindowTitle(self, str)
+ |  
+ |  sharedPainter(...)
+ |      sharedPainter(self) -> QPainter
+ |  
+ |  show(...)
+ |      show(self)
+ |  
+ |  showEvent(...)
+ |      showEvent(self, QShowEvent)
+ |  
+ |  showFullScreen(...)
+ |      showFullScreen(self)
+ |  
+ |  showMaximized(...)
+ |      showMaximized(self)
+ |  
+ |  showMinimized(...)
+ |      showMinimized(self)
+ |  
+ |  showNormal(...)
+ |      showNormal(self)
+ |  
+ |  size(...)
+ |      size(self) -> QSize
+ |  
+ |  sizeHint(...)
+ |      sizeHint(self) -> QSize
+ |  
+ |  sizeIncrement(...)
+ |      sizeIncrement(self) -> QSize
+ |  
+ |  sizePolicy(...)
+ |      sizePolicy(self) -> QSizePolicy
+ |  
+ |  stackUnder(...)
+ |      stackUnder(self, QWidget)
+ |  
+ |  statusTip(...)
+ |      statusTip(self) -> str
+ |  
+ |  style(...)
+ |      style(self) -> QStyle
+ |  
+ |  styleSheet(...)
+ |      styleSheet(self) -> str
+ |  
+ |  tabletEvent(...)
+ |      tabletEvent(self, QTabletEvent)
+ |  
+ |  testAttribute(...)
+ |      testAttribute(self, Qt.WidgetAttribute) -> bool
+ |  
+ |  toolTip(...)
+ |      toolTip(self) -> str
+ |  
+ |  toolTipDuration(...)
+ |      toolTipDuration(self) -> int
+ |  
+ |  underMouse(...)
+ |      underMouse(self) -> bool
+ |  
+ |  ungrabGesture(...)
+ |      ungrabGesture(self, Qt.GestureType)
+ |  
+ |  unsetCursor(...)
+ |      unsetCursor(self)
+ |  
+ |  unsetLayoutDirection(...)
+ |      unsetLayoutDirection(self)
+ |  
+ |  unsetLocale(...)
+ |      unsetLocale(self)
+ |  
+ |  update(...)
+ |      update(self)
+ |      update(self, QRect)
+ |      update(self, QRegion)
+ |      update(self, int, int, int, int)
+ |  
+ |  updateGeometry(...)
+ |      updateGeometry(self)
+ |  
+ |  updateMicroFocus(...)
+ |      updateMicroFocus(self)
+ |  
+ |  updatesEnabled(...)
+ |      updatesEnabled(self) -> bool
+ |  
+ |  visibleRegion(...)
+ |      visibleRegion(self) -> QRegion
+ |  
+ |  whatsThis(...)
+ |      whatsThis(self) -> str
+ |  
+ |  wheelEvent(...)
+ |      wheelEvent(self, QWheelEvent)
+ |  
+ |  width(...)
+ |      width(self) -> int
+ |  
+ |  winId(...)
+ |      winId(self) -> sip.voidptr
+ |  
+ |  window(...)
+ |      window(self) -> QWidget
+ |  
+ |  windowFilePath(...)
+ |      windowFilePath(self) -> str
+ |  
+ |  windowFlags(...)
+ |      windowFlags(self) -> Qt.WindowFlags
+ |  
+ |  windowHandle(...)
+ |      windowHandle(self) -> QWindow
+ |  
+ |  windowIcon(...)
+ |      windowIcon(self) -> QIcon
+ |  
+ |  windowIconChanged = <unbound PYQT_SIGNAL windowIconChanged(QIcon)>
+ |  windowIconText(...)
+ |      windowIconText(self) -> str
+ |  
+ |  windowIconTextChanged = <unbound PYQT_SIGNAL windowIconTextChanged(QString)>
+ |  windowModality(...)
+ |      windowModality(self) -> Qt.WindowModality
+ |  
+ |  windowOpacity(...)
+ |      windowOpacity(self) -> float
+ |  
+ |  windowRole(...)
+ |      windowRole(self) -> str
+ |  
+ |  windowState(...)
+ |      windowState(self) -> Qt.WindowStates
+ |  
+ |  windowTitle(...)
+ |      windowTitle(self) -> str
+ |  
+ |  windowTitleChanged = <unbound PYQT_SIGNAL windowTitleChanged(QString)>
+ |  windowType(...)
+ |      windowType(self) -> Qt.WindowType
+ |  
+ |  x(...)
+ |      x(self) -> int
+ |  
+ |  y(...)
+ |      y(self) -> int
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  DrawChildren = 2
+ |  
+ |  DrawWindowBackground = 1
+ |  
+ |  IgnoreMask = 4
+ |  
+ |  RenderFlag = <class 'PyQt5.QtWidgets.QWidget.RenderFlag'>
+ |      int([x]) -> integer
+ |      int(x, base=10) -> integer
+ |      
+ |      Convert a number or string to an integer, or return 0 if no arguments
+ |      are given.  If x is a number, return x.__int__().  For floating point
+ |      numbers, this truncates towards zero.
+ |      
+ |      If x is not a number or if base is given, then x must be a string,
+ |      bytes, or bytearray instance representing an integer literal in the
+ |      given base.  The literal can be preceded by '+' or '-' and be surrounded
+ |      by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+ |      Base 0 means to interpret the base from the string as an integer literal.
+ |      >>> int('0b100', base=0)
+ |      4
+ |  
+ |  RenderFlags = <class 'PyQt5.QtWidgets.QWidget.RenderFlags'>
+ |      QWidget.RenderFlags()
+ |      QWidget.RenderFlags(Union[QWidget.RenderFlags, QWidget.RenderFlag])
+ |      QWidget.RenderFlags(QWidget.RenderFlags)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from PyQt5.QtCore.QObject:
+ |  
+ |  __getattr__(...)
+ |      __getattr__(self, str) -> object
+ |  
+ |  blockSignals(...)
+ |      blockSignals(self, bool) -> bool
+ |  
+ |  childEvent(...)
+ |      childEvent(self, QChildEvent)
+ |  
+ |  children(...)
+ |      children(self) -> List[QObject]
+ |  
+ |  connectNotify(...)
+ |      connectNotify(self, QMetaMethod)
+ |  
+ |  customEvent(...)
+ |      customEvent(self, QEvent)
+ |  
+ |  deleteLater(...)
+ |      deleteLater(self)
+ |  
+ |  destroyed = <unbound PYQT_SIGNAL destroyed(QObject*)>
+ |  disconnect(...)
+ |      disconnect(QMetaObject.Connection) -> bool
+ |      disconnect(self)
+ |  
+ |  disconnectNotify(...)
+ |      disconnectNotify(self, QMetaMethod)
+ |  
+ |  dumpObjectInfo(...)
+ |      dumpObjectInfo(self)
+ |  
+ |  dumpObjectTree(...)
+ |      dumpObjectTree(self)
+ |  
+ |  dynamicPropertyNames(...)
+ |      dynamicPropertyNames(self) -> List[QByteArray]
+ |  
+ |  eventFilter(...)
+ |      eventFilter(self, QObject, QEvent) -> bool
+ |  
+ |  findChild(...)
+ |      findChild(self, type, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> QObject
+ |      findChild(self, Tuple, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> QObject
+ |  
+ |  findChildren(...)
+ |      findChildren(self, type, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+ |      findChildren(self, Tuple, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+ |      findChildren(self, type, QRegExp, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+ |      findChildren(self, Tuple, QRegExp, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+ |      findChildren(self, type, QRegularExpression, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+ |      findChildren(self, Tuple, QRegularExpression, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+ |  
+ |  inherits(...)
+ |      inherits(self, str) -> bool
+ |  
+ |  installEventFilter(...)
+ |      installEventFilter(self, QObject)
+ |  
+ |  isSignalConnected(...)
+ |      isSignalConnected(self, QMetaMethod) -> bool
+ |  
+ |  isWidgetType(...)
+ |      isWidgetType(self) -> bool
+ |  
+ |  isWindowType(...)
+ |      isWindowType(self) -> bool
+ |  
+ |  killTimer(...)
+ |      killTimer(self, int)
+ |  
+ |  metaObject(...)
+ |      metaObject(self) -> QMetaObject
+ |  
+ |  moveToThread(...)
+ |      moveToThread(self, QThread)
+ |  
+ |  objectName(...)
+ |      objectName(self) -> str
+ |  
+ |  objectNameChanged = <unbound PYQT_SIGNAL objectNameChanged(QString)>
+ |  parent(...)
+ |      parent(self) -> QObject
+ |  
+ |  property(...)
+ |      property(self, str) -> Any
+ |  
+ |  pyqtConfigure(...)
+ |      QObject.pyqtConfigure(...)
+ |      
+ |      Each keyword argument is either the name of a Qt property or a Qt signal.
+ |      For properties the property is set to the given value which should be of an
+ |      appropriate type.
+ |      For signals the signal is connected to the given value which should be a
+ |      callable.
+ |  
+ |  receivers(...)
+ |      receivers(self, PYQT_SIGNAL) -> int
+ |  
+ |  removeEventFilter(...)
+ |      removeEventFilter(self, QObject)
+ |  
+ |  sender(...)
+ |      sender(self) -> QObject
+ |  
+ |  senderSignalIndex(...)
+ |      senderSignalIndex(self) -> int
+ |  
+ |  setObjectName(...)
+ |      setObjectName(self, str)
+ |  
+ |  setProperty(...)
+ |      setProperty(self, str, Any) -> bool
+ |  
+ |  signalsBlocked(...)
+ |      signalsBlocked(self) -> bool
+ |  
+ |  startTimer(...)
+ |      startTimer(self, int, timerType: Qt.TimerType = Qt.CoarseTimer) -> int
+ |  
+ |  thread(...)
+ |      thread(self) -> QThread
+ |  
+ |  timerEvent(...)
+ |      timerEvent(self, QTimerEvent)
+ |  
+ |  tr(...)
+ |      tr(self, str, disambiguation: str = None, n: int = -1) -> str
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from PyQt5.QtCore.QObject:
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from PyQt5.QtCore.QObject:
+ |  
+ |  staticMetaObject = <PyQt5.QtCore.QMetaObject object>
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from PyQt5.QtGui.QPaintDevice:
+ |  
+ |  colorCount(...)
+ |      colorCount(self) -> int
+ |  
+ |  depth(...)
+ |      depth(self) -> int
+ |  
+ |  devicePixelRatio(...)
+ |      devicePixelRatio(self) -> int
+ |  
+ |  devicePixelRatioF(...)
+ |      devicePixelRatioF(self) -> float
+ |  
+ |  devicePixelRatioFScale(...)
+ |      devicePixelRatioFScale() -> float
+ |  
+ |  heightMM(...)
+ |      heightMM(self) -> int
+ |  
+ |  logicalDpiX(...)
+ |      logicalDpiX(self) -> int
+ |  
+ |  logicalDpiY(...)
+ |      logicalDpiY(self) -> int
+ |  
+ |  paintingActive(...)
+ |      paintingActive(self) -> bool
+ |  
+ |  physicalDpiX(...)
+ |      physicalDpiX(self) -> int
+ |  
+ |  physicalDpiY(...)
+ |      physicalDpiY(self) -> int
+ |  
+ |  widthMM(...)
+ |      widthMM(self) -> int
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from PyQt5.QtGui.QPaintDevice:
+ |  
+ |  PaintDeviceMetric = <class 'PyQt5.QtGui.QPaintDevice.PaintDeviceMetric...
+ |      int([x]) -> integer
+ |      int(x, base=10) -> integer
+ |      
+ |      Convert a number or string to an integer, or return 0 if no arguments
+ |      are given.  If x is a number, return x.__int__().  For floating point
+ |      numbers, this truncates towards zero.
+ |      
+ |      If x is not a number or if base is given, then x must be a string,
+ |      bytes, or bytearray instance representing an integer literal in the
+ |      given base.  The literal can be preceded by '+' or '-' and be surrounded
+ |      by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+ |      Base 0 means to interpret the base from the string as an integer literal.
+ |      >>> int('0b100', base=0)
+ |      4
+ |  
+ |  PdmDepth = 6
+ |  
+ |  PdmDevicePixelRatio = 11
+ |  
+ |  PdmDevicePixelRatioScaled = 12
+ |  
+ |  PdmDpiX = 7
+ |  
+ |  PdmDpiY = 8
+ |  
+ |  PdmHeight = 2
+ |  
+ |  PdmHeightMM = 4
+ |  
+ |  PdmNumColors = 5
+ |  
+ |  PdmPhysicalDpiX = 9
+ |  
+ |  PdmPhysicalDpiY = 10
+ |  
+ |  PdmWidth = 1
+ |  
+ |  PdmWidthMM = 3
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sip.simplewrapper:
+ |  
+ |  __init__(self, /, *args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from sip.simplewrapper:
+ |  
+ |  __new__(*args, **kwargs) from sip.wrappertype
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from sip.simplewrapper:
+ |  
+ |  __dict__
+
