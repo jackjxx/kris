@@ -1,0 +1,3177 @@
+KJ:~ kris$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.13 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| crashcourse        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tysql              |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> USE tysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> DESCRIBE tables;
+ERROR 1146 (42S02): Table 'tysql.tables' doesn't exist
+mysql> SHOW tables;
++-----------------+
+| Tables_in_tysql |
++-----------------+
+| Customers       |
+| OrderItems      |
+| Orders          |
+| Products        |
+| Vendors         |
++-----------------+
+5 rows in set (0.00 sec)
+
+
+mysql> # 这是一条注释
+mysql> /*SELECT prod_name,vend_id FROM products;*/
+mysql> SELECT prod_name --这是一条注释
+    -> FROM products;
+
+mysql> DESCRIBE Customers;
++--------------+-----------+------+-----+---------+-------+
+| Field        | Type      | Null | Key | Default | Extra |
++--------------+-----------+------+-----+---------+-------+
+| cust_id      | char(10)  | NO   | PRI | NULL    |       |
+| cust_name    | char(50)  | NO   |     | NULL    |       |
+| cust_address | char(50)  | YES  |     | NULL    |       |
+| cust_city    | char(50)  | YES  |     | NULL    |       |
+| cust_state   | char(5)   | YES  |     | NULL    |       |
+| cust_zip     | char(10)  | YES  |     | NULL    |       |
+| cust_country | char(50)  | YES  |     | NULL    |       |
+| cust_contact | char(50)  | YES  |     | NULL    |       |
+| cust_email   | char(255) | YES  |     | NULL    |       |
++--------------+-----------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT product_name FROM Products;
+ERROR 1054 (42S22): Unknown column 'product_name' in 'field list'
+mysql> SELECT prod_name FROM Products;
++---------------------+
+| prod_name           |
++---------------------+
+| Fish bean bag toy   |
+| Bird bean bag toy   |
+| Rabbit bean bag toy |
+| 8 inch teddy bear   |
+| 12 inch teddy bear  |
+| 18 inch teddy bear  |
+| Raggedy Ann         |
+| King doll           |
+| Queen doll          |
++---------------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT prod_name FROM Products ORDER BY prod_name;
++---------------------+
+| prod_name           |
++---------------------+
+| 12 inch teddy bear  |
+| 18 inch teddy bear  |
+| 8 inch teddy bear   |
+| Bird bean bag toy   |
+| Fish bean bag toy   |
+| King doll           |
+| Queen doll          |
+| Rabbit bean bag toy |
+| Raggedy Ann         |
++---------------------+
+9 rows in set (0.01 sec)
+
+mysql> SELECT prod_id,prod_price,prod_name FROM Products ORDER BY prod_price,prod_name;
++---------+------------+---------------------+
+| prod_id | prod_price | prod_name           |
++---------+------------+---------------------+
+| BNBG02  |       3.49 | Bird bean bag toy   |
+| BNBG01  |       3.49 | Fish bean bag toy   |
+| BNBG03  |       3.49 | Rabbit bean bag toy |
+| RGAN01  |       4.99 | Raggedy Ann         |
+| BR01    |       5.99 | 8 inch teddy bear   |
+| BR02    |       8.99 | 12 inch teddy bear  |
+| RYL01   |       9.49 | King doll           |
+| RYL02   |       9.49 | Queen doll          |
+| BR03    |      11.99 | 18 inch teddy bear  |
++---------+------------+---------------------+
+9 rows in set (0.01 sec)
+
+mysql> help
+
+For information about MySQL products and services, visit:
+   http://www.mysql.com/
+For developer information, including the MySQL Reference Manual, visit:
+   http://dev.mysql.com/
+To buy MySQL Enterprise support, training, or other products, visit:
+   https://shop.mysql.com/
+
+List of all MySQL commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+
+For server side help, type 'help contents'
+
+mysql> SELECT prod_id,prod_price, prod_name FROM Products ORDER BY 2,3
+    -> ; --支持按相对应列位置进行排序
++---------+------------+---------------------+
+| prod_id | prod_price | prod_name           |
++---------+------------+---------------------+
+| BNBG02  |       3.49 | Bird bean bag toy   |
+| BNBG01  |       3.49 | Fish bean bag toy   |
+| BNBG03  |       3.49 | Rabbit bean bag toy |
+| RGAN01  |       4.99 | Raggedy Ann         |
+| BR01    |       5.99 | 8 inch teddy bear   |
+| BR02    |       8.99 | 12 inch teddy bear  |
+| RYL01   |       9.49 | King doll           |
+| RYL02   |       9.49 | Queen doll          |
+| BR03    |      11.99 | 18 inch teddy bear  |
++---------+------------+---------------------+
+9 rows in set (0.00 sec)
+
+    -> SELECT prod_id,prod_price,prod_name FROM Products ORDER BY prod_price DESC; 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--支持按相对应列位置进行排序
+SELECT prod_id,prod_price,prod_name FR' at line 1
+mysql> SELECT prod_id,prod_price,prod_name FROM Products ORDER BY prod_price DESC; 
++---------+------------+---------------------+
+| prod_id | prod_price | prod_name           |
++---------+------------+---------------------+
+| BR03    |      11.99 | 18 inch teddy bear  |
+| RYL01   |       9.49 | King doll           |
+| RYL02   |       9.49 | Queen doll          |
+| BR02    |       8.99 | 12 inch teddy bear  |
+| BR01    |       5.99 | 8 inch teddy bear   |
+| RGAN01  |       4.99 | Raggedy Ann         |
+| BNBG01  |       3.49 | Fish bean bag toy   |
+| BNBG02  |       3.49 | Bird bean bag toy   |
+| BNBG03  |       3.49 | Rabbit bean bag toy |
++---------+------------+---------------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT prod_id,prod_price,prod_name FROM Products ORDER BY prod_price DESC, prod_name;
++---------+------------+---------------------+
+| prod_id | prod_price | prod_name           |
++---------+------------+---------------------+
+| BR03    |      11.99 | 18 inch teddy bear  |
+| RYL01   |       9.49 | King doll           |
+| RYL02   |       9.49 | Queen doll          |
+| BR02    |       8.99 | 12 inch teddy bear  |
+| BR01    |       5.99 | 8 inch teddy bear   |
+| RGAN01  |       4.99 | Raggedy Ann         |
+| BNBG02  |       3.49 | Bird bean bag toy   |
+| BNBG01  |       3.49 | Fish bean bag toy   |
+| BNBG03  |       3.49 | Rabbit bean bag toy |
++---------+------------+---------------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT prod_name,prod_price FROM Products WHERE prod_price=3.49;
++---------------------+------------+
+| prod_name           | prod_price |
++---------------------+------------+
+| Fish bean bag toy   |       3.49 |
+| Bird bean bag toy   |       3.49 |
+| Rabbit bean bag toy |       3.49 |
++---------------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT prod_name,prod_price FROM Products WHERE prod_price < 10;
++---------------------+------------+
+| prod_name           | prod_price |
++---------------------+------------+
+| Fish bean bag toy   |       3.49 |
+| Bird bean bag toy   |       3.49 |
+| Rabbit bean bag toy |       3.49 |
+| 8 inch teddy bear   |       5.99 |
+| 12 inch teddy bear  |       8.99 |
+| Raggedy Ann         |       4.99 |
+| King doll           |       9.49 |
+| Queen doll          |       9.49 |
++---------------------+------------+
+8 rows in set (0.01 sec)
+
+mysql> SELECT prod_name,prod_price FROM Products WHERE prod_price <= 10;
++---------------------+------------+
+| prod_name           | prod_price |
++---------------------+------------+
+| Fish bean bag toy   |       3.49 |
+| Bird bean bag toy   |       3.49 |
+| Rabbit bean bag toy |       3.49 |
+| 8 inch teddy bear   |       5.99 |
+| 12 inch teddy bear  |       8.99 |
+| Raggedy Ann         |       4.99 |
+| King doll           |       9.49 |
+| Queen doll          |       9.49 |
++---------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> DESCRIBE Prodcut;
+ERROR 1146 (42S02): Table 'tysql.prodcut' doesn't exist
+mysql> DESCRIBE Prodcuts;
+ERROR 1146 (42S02): Table 'tysql.prodcuts' doesn't exist
+mysql> DESCRIBE Products;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| prod_id    | char(10)     | NO   | PRI | NULL    |       |
+| vend_id    | char(10)     | NO   | MUL | NULL    |       |
+| prod_name  | char(255)    | NO   |     | NULL    |       |
+| prod_price | decimal(8,2) | NO   |     | NULL    |       |
+| prod_desc  | text         | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT vend_id,prid_name FROM Products WHERE vend_id != 'DLL01';
+ERROR 1054 (42S22): Unknown column 'prid_name' in 'field list'
+mysql> SELECT vend_id,prod_name FROM Products WHERE vend_id != 'DLL01';
++---------+--------------------+
+| vend_id | prod_name          |
++---------+--------------------+
+| BRS01   | 8 inch teddy bear  |
+| BRS01   | 12 inch teddy bear |
+| BRS01   | 18 inch teddy bear |
+| FNG01   | King doll          |
+| FNG01   | Queen doll         |
++---------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT vend_id,prod_name FROM Products WHERE vend_id <> 'DLL01';
++---------+--------------------+
+| vend_id | prod_name          |
++---------+--------------------+
+| BRS01   | 8 inch teddy bear  |
+| BRS01   | 12 inch teddy bear |
+| BRS01   | 18 inch teddy bear |
+| FNG01   | King doll          |
+| FNG01   | Queen doll         |
++---------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT prod_name,prod_price FROM Products WHERE prod_price BETWEEN 5 AND 10;
++--------------------+------------+
+| prod_name          | prod_price |
++--------------------+------------+
+| 8 inch teddy bear  |       5.99 |
+| 12 inch teddy bear |       8.99 |
+| King doll          |       9.49 |
+| Queen doll         |       9.49 |
++--------------------+------------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT prod_name FROM Products WHERE prod_price IS NULL;
+Empty set (0.00 sec)
+
+mysql> SELECT cust_name FROM CUSTOMERS WHERE cust_email IS NULL;
++---------------+
+| cust_name     |
++---------------+
+| Kids Place    |
+| The Toy Store |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT cust_name FROM CUSTOMERS WHERE cust_email IS not NULL;
++--------------+
+| cust_name    |
++--------------+
+| Village Toys |
+| Fun4All      |
+| Fun4All      |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT cust_name FROM CUSTOMERS;
++---------------+
+| cust_name     |
++---------------+
+| Village Toys  |
+| Kids Place    |
+| Fun4All       |
+| Fun4All       |
+| The Toy Store |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT cust_name,cust_email FROM CUSTOMERS;
++---------------+-----------------------+
+| cust_name     | cust_email            |
++---------------+-----------------------+
+| Village Toys  | sales@villagetoys.com |
+| Kids Place    | NULL                  |
+| Fun4All       | jjones@fun4all.com    |
+| Fun4All       | dstephens@fun4all.com |
+| The Toy Store | NULL                  |
++---------------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT vend_idm,prod_id,prod_price,prod_name FROM Products WHERE vend_id='DLL0
+ERROR 1054 (42S22): Unknown column 'vend_idm' in 'field list'
+mysql> SELECT vend_id,prod_id,prod_price,prod_name FROM Products WHERE vend_id='DLL01' AND prod_price <=4;
++---------+---------+------------+---------------------+
+| vend_id | prod_id | prod_price | prod_name           |
++---------+---------+------------+---------------------+
+| DLL01   | BNBG01  |       3.49 | Fish bean bag toy   |
+| DLL01   | BNBG02  |       3.49 | Bird bean bag toy   |
+| DLL01   | BNBG03  |       3.49 | Rabbit bean bag toy |
++---------+---------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT vend_id,prod_id,prod_price,prod_name FROM Products WHERE vend_id='DLL01' AND prod_price <=4 ORDER BY prod_name;
++---------+---------+------------+---------------------+
+| vend_id | prod_id | prod_price | prod_name           |
++---------+---------+------------+---------------------+
+| DLL01   | BNBG02  |       3.49 | Bird bean bag toy   |
+| DLL01   | BNBG01  |       3.49 | Fish bean bag toy   |
+| DLL01   | BNBG03  |       3.49 | Rabbit bean bag toy |
++---------+---------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT prod_name,prod_price FROM Products WHERE vend_id='DLL01' OR vend_id='BRS01';
++---------------------+------------+
+| prod_name           | prod_price |
++---------------------+------------+
+| 8 inch teddy bear   |       5.99 |
+| 12 inch teddy bear  |       8.99 |
+| 18 inch teddy bear  |      11.99 |
+| Fish bean bag toy   |       3.49 |
+| Bird bean bag toy   |       3.49 |
+| Rabbit bean bag toy |       3.49 |
+| Raggedy Ann         |       4.99 |
++---------------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT vend_id,rod_name,prod_price FROM Products WHERE vend_id='DLL01' OR vend_id='BRS01';
+ERROR 1054 (42S22): Unknown column 'rod_name' in 'field list'
+mysql> SELECT vend_id,prod_name,prod_price FROM Products WHERE vend_id='DLL01' OR vend_id='BRS01';
++---------+---------------------+------------+
+| vend_id | prod_name           | prod_price |
++---------+---------------------+------------+
+| BRS01   | 8 inch teddy bear   |       5.99 |
+| BRS01   | 12 inch teddy bear  |       8.99 |
+| BRS01   | 18 inch teddy bear  |      11.99 |
+| DLL01   | Fish bean bag toy   |       3.49 |
+| DLL01   | Bird bean bag toy   |       3.49 |
+| DLL01   | Rabbit bean bag toy |       3.49 |
+| DLL01   | Raggedy Ann         |       4.99 |
++---------+---------------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT vend_id,prod_name,prod_price FROM Products WHERE prod_price>=10 AND (vend_id='DLL01' OR vend_id='BRS01');
++---------+--------------------+------------+
+| vend_id | prod_name          | prod_price |
++---------+--------------------+------------+
+| BRS01   | 18 inch teddy bear |      11.99 |
++---------+--------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT vend_id,prod_name,prod_price FROM Products WHERE vend_id IN ('DLL01','BRS01') ORDER BY prod_name;
++---------+---------------------+------------+
+| vend_id | prod_name           | prod_price |
++---------+---------------------+------------+
+| BRS01   | 12 inch teddy bear  |       8.99 |
+| BRS01   | 18 inch teddy bear  |      11.99 |
+| BRS01   | 8 inch teddy bear   |       5.99 |
+| DLL01   | Bird bean bag toy   |       3.49 |
+| DLL01   | Fish bean bag toy   |       3.49 |
+| DLL01   | Rabbit bean bag toy |       3.49 |
+| DLL01   | Raggedy Ann         |       4.99 |
++---------+---------------------+------------+
+7 rows in set (0.01 sec)
+
+mysql> SELECT vend_id,prod_name,prod_price FROM Products WHERE vend_id='DLL01'OR vend_id='BRS01' ORDER BY prod_name;
++---------+---------------------+------------+
+| vend_id | prod_name           | prod_price |
++---------+---------------------+------------+
+| BRS01   | 12 inch teddy bear  |       8.99 |
+| BRS01   | 18 inch teddy bear  |      11.99 |
+| BRS01   | 8 inch teddy bear   |       5.99 |
+| DLL01   | Bird bean bag toy   |       3.49 |
+| DLL01   | Fish bean bag toy   |       3.49 |
+| DLL01   | Rabbit bean bag toy |       3.49 |
+| DLL01   | Raggedy Ann         |       4.99 |
++---------+---------------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT vend_id,prod_name,prod_price FROM Products WHERE NOT vend_id='DLL01' ORDER BY prod_name;
++---------+--------------------+------------+
+| vend_id | prod_name          | prod_price |
++---------+--------------------+------------+
+| BRS01   | 12 inch teddy bear |       8.99 |
+| BRS01   | 18 inch teddy bear |      11.99 |
+| BRS01   | 8 inch teddy bear  |       5.99 |
+| FNG01   | King doll          |       9.49 |
+| FNG01   | Queen doll         |       9.49 |
++---------+--------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT vend_id,prod_name,prod_price FROM Products WHERE vend_id <>'DLL01' ORDER BY prod_name;
++---------+--------------------+------------+
+| vend_id | prod_name          | prod_price |
++---------+--------------------+------------+
+| BRS01   | 12 inch teddy bear |       8.99 |
+| BRS01   | 18 inch teddy bear |      11.99 |
+| BRS01   | 8 inch teddy bear  |       5.99 |
+| FNG01   | King doll          |       9.49 |
+| FNG01   | Queen doll         |       9.49 |
++---------+--------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT vend_id,prod_name,prod_price FROM Products WHERE prod_name LIKE 'Fish%' ORDER BY prod_name;
++---------+-------------------+------------+
+| vend_id | prod_name         | prod_price |
++---------+-------------------+------------+
+| DLL01   | Fish bean bag toy |       3.49 |
++---------+-------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT vend_id,prod_name,prod_price FROM Products WHERE prod_name LIKE '%bean bag%' ORDER BY prod_name;
++---------+---------------------+------------+
+| vend_id | prod_name           | prod_price |
++---------+---------------------+------------+
+| DLL01   | Bird bean bag toy   |       3.49 |
+| DLL01   | Fish bean bag toy   |       3.49 |
+| DLL01   | Rabbit bean bag toy |       3.49 |
++---------+---------------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT prod_name FROM Products WHERE prod_name LIKE 'F%y';
++-------------------+
+| prod_name         |
++-------------------+
+| Fish bean bag toy |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT prod_name FROM Products WHERE prod_name LIKE 'F*y';
+Empty set (0.01 sec)
+
+mysql> SELECT prod_name FROM Products WHERE prod_name LIKE 'F%y%';
++-------------------+
+| prod_name         |
++-------------------+
+| Fish bean bag toy |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT prod_id,prod_name FROM Products WHERE prod_name LIKE '__inch teddy bear'
+    -> ;
++---------+-------------------+
+| prod_id | prod_name         |
++---------+-------------------+
+| BR01    | 8 inch teddy bear |
++---------+-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT prod_id,prod_name FROM Products WHERE prod_name LIKE '__ inch teddy bear';
++---------+--------------------+
+| prod_id | prod_name          |
++---------+--------------------+
+| BR02    | 12 inch teddy bear |
+| BR03    | 18 inch teddy bear |
++---------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT prod_id,prod_name FROM Products WHERE prod_name LIKE '% inch teddy bear';
++---------+--------------------+
+| prod_id | prod_name          |
++---------+--------------------+
+| BR01    | 8 inch teddy bear  |
+| BR02    | 12 inch teddy bear |
+| BR03    | 18 inch teddy bear |
++---------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> DESCRIBE Customers;
++--------------+-----------+------+-----+---------+-------+
+| Field        | Type      | Null | Key | Default | Extra |
++--------------+-----------+------+-----+---------+-------+
+| cust_id      | char(10)  | NO   | PRI | NULL    |       |
+| cust_name    | char(50)  | NO   |     | NULL    |       |
+| cust_address | char(50)  | YES  |     | NULL    |       |
+| cust_city    | char(50)  | YES  |     | NULL    |       |
+| cust_state   | char(5)   | YES  |     | NULL    |       |
+| cust_zip     | char(10)  | YES  |     | NULL    |       |
+| cust_country | char(50)  | YES  |     | NULL    |       |
+| cust_contact | char(50)  | YES  |     | NULL    |       |
+| cust_email   | char(255) | YES  |     | NULL    |       |
++--------------+-----------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE '[JM]%' ORDER BY cust_contact;
+Empty set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact;
+Empty set, 5 warnings (0.00 sec)
+
+mysql> 
+mysql> SELECT cust_contact FROM Customers;
++--------------------+
+| cust_contact       |
++--------------------+
+| John Smith         |
+| Michelle Green     |
+| Jim Jones          |
+| Denise L. Stephens |
+| Kim Howard         |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE '[JM]%' ORDER BY cust_contact;
+Empty set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE '[JM]%';
+Empty set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE '[JM]';
+Empty set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE [JM];
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[JM]' at line 1
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE '[JM]';
+Empty set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE '[JM]%';
+Empty set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE 'J%';
++--------------+
+| cust_contact |
++--------------+
+| John Smith   |
+| Jim Jones    |
++--------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE 'JM%';
+Empty set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE cust_contact LIKE '[JM]%';
+Empty set (0.00 sec)
+
+mysql> SELECT cust_contact FROM Customers WHERE NOT cust_contact LIKE '[JM]%' ORDER BY cust_contact;
++--------------------+
+| cust_contact       |
++--------------------+
+| Denise L. Stephens |
+| Jim Jones          |
+| John Smith         |
+| Kim Howard         |
+| Michelle Green     |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> -- MySQL 不支持此通配符
+mysql> -- MySQL 不支持此通配符[]
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_tysql |
++-----------------+
+| Customers       |
+| OrderItems      |
+| Orders          |
+| Products        |
+| Vendors         |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT vend_name + '(' + vend-country + ')' FROM Vendors ORDER BY vend_name;
+ERROR 1054 (42S22): Unknown column 'vend' in 'field list'
+mysql> SELECT vend_name || '(' || vend-country || ')' FROM Vendors ORDER BY vend_name;
+ERROR 1054 (42S22): Unknown column 'vend' in 'field list'
+mysql> SELECT Concat(vend_name,'(',vend_country,')') FROM Vendors ORDER BY vend_name;
++----------------------------------------+
+| Concat(vend_name,'(',vend_country,')') |
++----------------------------------------+
+| Bear Emporium(USA)                     |
+| Bears R Us(USA)                        |
+| Doll House Inc.(USA)                   |
+| Fun and Games(England)                 |
+| Furball Inc.(USA)                      |
+| Jouets et ours(France)                 |
++----------------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT Concat(RTRIM(vend_name),'(',RTRIM(vend_country),')') FROM Vendors ORDER BY vend_name;
++------------------------------------------------------+
+| Concat(RTRIM(vend_name),'(',RTRIM(vend_country),')') |
++------------------------------------------------------+
+| Bear Emporium(USA)                                   |
+| Bears R Us(USA)                                      |
+| Doll House Inc.(USA)                                 |
+| Fun and Games(England)                               |
+| Furball Inc.(USA)                                    |
+| Jouets et ours(France)                               |
++------------------------------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT Concat(vend_name,'(',vend_country,')') AS vend_title FROM Vendors ORDER BY vend_name;
++------------------------+
+| vend_title             |
++------------------------+
+| Bear Emporium(USA)     |
+| Bears R Us(USA)        |
+| Doll House Inc.(USA)   |
+| Fun and Games(England) |
+| Furball Inc.(USA)      |
+| Jouets et ours(France) |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.00 sec)
+
+mysql> SELECT prod_id,quantity,item_price FROM OrderItems WHERE order_num=2008;
+Empty set (0.00 sec)
+
+mysql> SELECT prod_id,quantity,item_price FROM OrderItems WHERE order_num=20008;
++---------+----------+------------+
+| prod_id | quantity | item_price |
++---------+----------+------------+
+| RGAN01  |        5 |       4.99 |
+| BR03    |        5 |      11.99 |
+| BNBG01  |       10 |       3.49 |
+| BNBG02  |       10 |       3.49 |
+| BNBG03  |       10 |       3.49 |
++---------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT prod_id,quantity,item_price quantity*item_price AS expanded_price FROM OrderItems WHERE order_num=20008;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*item_price AS expanded_price FROM OrderItems WHERE order_num=20008' at line 1
+mysql> SELECT prod_id,quantity,item_price,quantity*item_price AS expanded_price FROM OrderItems WHERE order_num=20008;
++---------+----------+------------+----------------+
+| prod_id | quantity | item_price | expanded_price |
++---------+----------+------------+----------------+
+| RGAN01  |        5 |       4.99 |          24.95 |
+| BR03    |        5 |      11.99 |          59.95 |
+| BNBG01  |       10 |       3.49 |          34.90 |
+| BNBG02  |       10 |       3.49 |          34.90 |
+| BNBG03  |       10 |       3.49 |          34.90 |
++---------+----------+------------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT Now();
++---------------------+
+| Now()               |
++---------------------+
+| 2019-06-17 14:39:48 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT Now() prod_id,quantity,item_price,quantity*item_price AS expanded_price FROM OrderItems WHERE order_num=20008;
++---------------------+----------+------------+----------------+
+| prod_id             | quantity | item_price | expanded_price |
++---------------------+----------+------------+----------------+
+| 2019-06-17 14:53:34 |        5 |       4.99 |          24.95 |
+| 2019-06-17 14:53:34 |        5 |      11.99 |          59.95 |
+| 2019-06-17 14:53:34 |       10 |       3.49 |          34.90 |
+| 2019-06-17 14:53:34 |       10 |       3.49 |          34.90 |
+| 2019-06-17 14:53:34 |       10 |       3.49 |          34.90 |
++---------------------+----------+------------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Now(),prod_id,quantity,item_price,quantity*item_price AS expanded_price FROM OrderItems WHERE order_num=20008;
++---------------------+---------+----------+------------+----------------+
+| Now()               | prod_id | quantity | item_price | expanded_price |
++---------------------+---------+----------+------------+----------------+
+| 2019-06-17 14:53:47 | RGAN01  |        5 |       4.99 |          24.95 |
+| 2019-06-17 14:53:47 | BR03    |        5 |      11.99 |          59.95 |
+| 2019-06-17 14:53:47 | BNBG01  |       10 |       3.49 |          34.90 |
+| 2019-06-17 14:53:47 | BNBG02  |       10 |       3.49 |          34.90 |
+| 2019-06-17 14:53:47 | BNBG03  |       10 |       3.49 |          34.90 |
++---------------------+---------+----------+------------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT vend_name,UPPER(vend_name) AS vend_name_upcase FROM Vendors ORDER BY vend_name;
++-----------------+------------------+
+| vend_name       | vend_name_upcase |
++-----------------+------------------+
+| Bear Emporium   | BEAR EMPORIUM    |
+| Bears R Us      | BEARS R US       |
+| Doll House Inc. | DOLL HOUSE INC.  |
+| Fun and Games   | FUN AND GAMES    |
+| Furball Inc.    | FURBALL INC.     |
+| Jouets et ours  | JOUETS ET OURS   |
++-----------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT vend_name,LEFT(vend_name) AS vend_name_upcase FROM Vendors ORDER BY vend_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AS vend_name_upcase FROM Vendors ORDER BY vend_name' at line 1
+mysql> SELECT vend_name,LENGTH(vend_name) FROM Vendors ORDER BY vend_name; 
++-----------------+-------------------+
+| vend_name       | LENGTH(vend_name) |
++-----------------+-------------------+
+| Bear Emporium   |                13 |
+| Bears R Us      |                10 |
+| Doll House Inc. |                15 |
+| Fun and Games   |                13 |
+| Furball Inc.    |                12 |
+| Jouets et ours  |                14 |
++-----------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT vend_name,LOWER(vend_name) FROM Vendors ORDER BY vend_name;
++-----------------+------------------+
+| vend_name       | LOWER(vend_name) |
++-----------------+------------------+
+| Bear Emporium   | bear emporium    |
+| Bears R Us      | bears r us       |
+| Doll House Inc. | doll house inc.  |
+| Fun and Games   | fun and games    |
+| Furball Inc.    | furball inc.     |
+| Jouets et ours  | jouets et ours   |
++-----------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT vend_name,LTRIM(vend_name) FROM Vendors ORDER BY vend_name;
++-----------------+------------------+
+| vend_name       | LTRIM(vend_name) |
++-----------------+------------------+
+| Bear Emporium   | Bear Emporium    |
+| Bears R Us      | Bears R Us       |
+| Doll House Inc. | Doll House Inc.  |
+| Fun and Games   | Fun and Games    |
+| Furball Inc.    | Furball Inc.     |
+| Jouets et ours  | Jouets et ours   |
++-----------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT vend_name,RTRIM(vend_name) FROM Vendors ORDER BY vend_name;
++-----------------+------------------+
+| vend_name       | RTRIM(vend_name) |
++-----------------+------------------+
+| Bear Emporium   | Bear Emporium    |
+| Bears R Us      | Bears R Us       |
+| Doll House Inc. | Doll House Inc.  |
+| Fun and Games   | Fun and Games    |
+| Furball Inc.    | Furball Inc.     |
+| Jouets et ours  | Jouets et ours   |
++-----------------+------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT vend_name,RIGHT(vend_name) FROM Vendors ORDER BY vend_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') FROM Vendors ORDER BY vend_name' at line 1
+mysql> SELECT vend_name,SOUNDEX(vend_name) FROM Vendors ORDER BY vend_name;
++-----------------+--------------------+
+| vend_name       | SOUNDEX(vend_name) |
++-----------------+--------------------+
+| Bear Emporium   | B65165             |
+| Bears R Us      | B6262              |
+| Doll House Inc. | D4252              |
+| Fun and Games   | F53252             |
+| Furball Inc.    | F61452             |
+| Jouets et ours  | J32362             |
++-----------------+--------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT cust_name,cust_contact FROM Customers WHERE cust_contact='Michael Green';
+Empty set (0.00 sec)
+
+mysql> SELECT cust_name,cust_contact FROM Customers WHERE SOUNDEX(cust_contact)=SOUNDEX('Michael Green');
++------------+----------------+
+| cust_name  | cust_contact   |
++------------+----------------+
+| Kids Place | Michelle Green |
++------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT order_num FROM Orders WHERE DATEPART(yy,order_date)=2012;
+ERROR 1305 (42000): FUNCTION tysql.DATEPART does not exist
+mysql> DESCRIBE Orders;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| order_num  | int(11)  | NO   | PRI | NULL    |       |
+| order_date | datetime | NO   |     | NULL    |       |
+| cust_id    | char(10) | NO   | MUL | NULL    |       |
++------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT order_num,order_date FROM Orders;
++-----------+---------------------+
+| order_num | order_date          |
++-----------+---------------------+
+|     20005 | 2012-05-01 00:00:00 |
+|     20006 | 2012-01-12 00:00:00 |
+|     20007 | 2012-01-30 00:00:00 |
+|     20008 | 2012-02-03 00:00:00 |
+|     20009 | 2012-02-08 00:00:00 |
++-----------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT order_num,order_date FROM Orders WHERE DATEPART(yy,order_date)=2012; 
+ERROR 1305 (42000): FUNCTION tysql.DATEPART does not exist
+mysql> SELECT order_num,order_date FROM Orders WHERE DATEPART(year,order_date)=2012;
+ERROR 1305 (42000): FUNCTION tysql.DATEPART does not exist
+mysql> SELECT order_num,order_date FROM Orders WHERE YEAR(order_date)=2012; 
++-----------+---------------------+
+| order_num | order_date          |
++-----------+---------------------+
+|     20005 | 2012-05-01 00:00:00 |
+|     20006 | 2012-01-12 00:00:00 |
+|     20007 | 2012-01-30 00:00:00 |
+|     20008 | 2012-02-03 00:00:00 |
+|     20009 | 2012-02-08 00:00:00 |
++-----------+---------------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT order_num,order_date FROM Orders WHERE strftime('%Y',order_date)='2012';
+ERROR 1305 (42000): FUNCTION tysql.strftime does not exist
+mysql> SELECT ABS(-23)
+    -> ;
++----------+
+| ABS(-23) |
++----------+
+|       23 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SLECT COS(60),EXP(2),PI(),SIN(60),SQRT(4),TAN(45)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SLECT COS(60),EXP(2),PI(),SIN(60),SQRT(4),TAN(45)' at line 1
+mysql> SELECT COS(60),EXP(2),PI(),SIN(60),SQRT(4),TAN(45);
++---------------------+------------------+----------+---------------------+---------+--------------------+
+| COS(60)             | EXP(2)           | PI()     | SIN(60)             | SQRT(4) | TAN(45)            |
++---------------------+------------------+----------+---------------------+---------+--------------------+
+| -0.9524129804151563 | 7.38905609893065 | 3.141593 | -0.3048106211022167 |       2 | 1.6197751905438615 |
++---------------------+------------------+----------+---------------------+---------+--------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT TAN(90);
++--------------------+
+| TAN(90)            |
++--------------------+
+| -1.995200412208242 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(prod_price) AS avg_price FROM Products;
++-----------+
+| avg_price |
++-----------+
+|  6.823333 |
++-----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT AVG(prod_price) AS avg_price FROM Products;
++-----------+
+| avg_price |
++-----------+
+|  6.823333 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(prod_price) AS avg_price FROM Products WHERE vend_id='DLL01';
++-----------+
+| avg_price |
++-----------+
+|  3.865000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT prod_price, AVG(prod_price) AS avg_price FROM Products WHERE vend_id='DLL01';
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'tysql.Products.prod_price'; this is incompatible with sql_mode=only_full_group_by
+mysql> SELECT COUNT(*) AS num_cust FROM Customers;
++----------+
+| num_cust |
++----------+
+|        5 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(cust_email) AS num_cust FROM Customers;
++----------+
+| num_cust |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT() AS num_cust FROM Customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AS num_cust FROM Customers' at line 1
+mysql> SELECT MAX(prod_price) AS max_price FROM Products;
++-----------+
+| max_price |
++-----------+
+|     11.99 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT prod_price FROM Products;
++------------+
+| prod_price |
++------------+
+|       3.49 |
+|       3.49 |
+|       3.49 |
+|       5.99 |
+|       8.99 |
+|      11.99 |
+|       4.99 |
+|       9.49 |
+|       9.49 |
++------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT Min(prod_price) AS min_price FROM Products;
++-----------+
+| min_price |
++-----------+
+|      3.49 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT quantity FROM OrderItems WHERE order_num=20005;
++----------+
+| quantity |
++----------+
+|      100 |
+|      100 |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT SUM(quantity) AS items_ordered FROM OrderItems WHERE order_num=20005;
++---------------+
+| items_ordered |
++---------------+
+|           200 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SUM(item_price*quantity) AS total_price FROM OrderItems WHERE order_num=20005;
++-------------+
+| total_price |
++-------------+
+|     1648.00 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(DISNTCT prod_price) AS avg_price FROM Products WHERE vend_id="DLL01";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'prod_price) AS avg_price FROM Products WHERE vend_id="DLL01"' at line 1
+mysql> SELECT AVG(DISNTCT prod_price) AS avg_price FROM Products WHERE vend_id='DLL01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'prod_price) AS avg_price FROM Products WHERE vend_id='DLL01'' at line 1
+mysql> SELECT DISNTCT prod_price AS distinct_price FROM Products WHERE vend_id='DLL01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS distinct_price FROM Products WHERE vend_id='DLL01'' at line 1
+mysql> SELECT DISNTCT prod_price FROM Products WHERE vend_id='DLL01';
+ERROR 1054 (42S22): Unknown column 'DISNTCT' in 'field list'
+mysql> SELECT DISNTCT(prod_price) FROM Products WHERE vend_id='DLL01';
+ERROR 1305 (42000): FUNCTION tysql.DISNTCT does not exist
+mysql> SELECT AVG(DISTINCT prod_price) AS avg_price FROM Products WHERE vend_id='DLL01';
++-----------+
+| avg_price |
++-----------+
+|  4.240000 |
++-----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(*) AS num_items,MIN(prod_price) AS price_min,MAX(prod_price) AS price_max,AVG(prod_price) AS price_avg FROM Products;
++-----------+-----------+-----------+-----------+
+| num_items | price_min | price_max | price_avg |
++-----------+-----------+-----------+-----------+
+|         9 |      3.49 |     11.99 |  6.823333 |
++-----------+-----------+-----------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT vend_id, COUNT(*) AS num_prods FROM Products GROUP BY vend_id;
++---------+-----------+
+| vend_id | num_prods |
++---------+-----------+
+| BRS01   |         3 |
+| DLL01   |         4 |
+| FNG01   |         2 |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT cust_id,COUNT(*) AS orders FROM Orders GROUP BY cust_id HAVING COUNT(*)>=2;
++------------+--------+
+| cust_id    | orders |
++------------+--------+
+| 1000000001 |      2 |
++------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT cust_id,COUNT(*) AS orders FROM Orders;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'tysql.Orders.cust_id'; this is incompatible with sql_mode=only_full_group_by
+mysql> SELECT cust_id,COUNT(*) AS orders FROM Orders GROUP BY cust_id;
++------------+--------+
+| cust_id    | orders |
++------------+--------+
+| 1000000001 |      2 |
+| 1000000003 |      1 |
+| 1000000004 |      1 |
+| 1000000005 |      1 |
++------------+--------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT vend_id, COUNT(*) AS num_prods F
+    -> ROM Products WHERE prod_price>=4 GROUP BY vend_id HAVING COUNT(*)>=2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'F
+ROM Products WHERE prod_price>=4 GROUP BY vend_id HAVING COUNT(*)>=2' at line 1
+mysql> SELECT vend_id, COUNT(*) AS num_prods FROM Products WHERE prod_price>=4 GROUP BY vend_id HAVING COUNT(*)>=2;
++---------+-----------+
+| vend_id | num_prods |
++---------+-----------+
+| BRS01   |         3 |
+| FNG01   |         2 |
++---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT order_num, COUNT(*) AS items FROM OrderItems GROUP BY order_num HAVING COUNT(*)>=3
+    -> ;
++-----------+-------+
+| order_num | items |
++-----------+-------+
+|     20006 |     3 |
+|     20007 |     5 |
+|     20008 |     5 |
+|     20009 |     3 |
++-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT order_num, COUNT(*) AS items FROM OrderItems GROUP BY order_num HAVING COUNT(*)>=3 ORDER BY items,order_num;
++-----------+-------+
+| order_num | items |
++-----------+-------+
+|     20006 |     3 |
+|     20009 |     3 |
+|     20007 |     5 |
+|     20008 |     5 |
++-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT order_num FROM OrderItems WHERE prod_id='RGAN01';
++-----------+
+| order_num |
++-----------+
+|     20007 |
+|     20008 |
++-----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT cust_id FROM Orders WHERE order_num IN (20007,20008);
++------------+
+| cust_id    |
++------------+
+| 1000000004 |
+| 1000000005 |
++------------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT cust_id FROM Orders WHERE order_num IN (SELECT order_num FROM OrderItems WHERE prod_id='RGAN01');
++------------+
+| cust_id    |
++------------+
+| 1000000004 |
+| 1000000005 |
++------------+
+2 rows in set (0.01 sec)
+
+mysql> mysql> SELECT cust_name, cust_contact FROM Customers WHERE cust('1000000004', '1000000005');
+ERROR 2006 (HY000): MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    11
+Current database: tysql
+
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.22 sec)
+
+mysql> SELECT cust_name, cust_contact FROM Customers WHERE cust_id IN (SELECT cust_id FROM Orders WHERE order_num IN (SELECT order_num FROM OrderItems WHERE prod_id='RGAN01'));
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.01 sec)
+
+mysql> DESCRIBE Customers;
++--------------+-----------+------+-----+---------+-------+
+| Field        | Type      | Null | Key | Default | Extra |
++--------------+-----------+------+-----+---------+-------+
+| cust_id      | char(10)  | NO   | PRI | NULL    |       |
+| cust_name    | char(50)  | NO   |     | NULL    |       |
+| cust_address | char(50)  | YES  |     | NULL    |       |
+| cust_city    | char(50)  | YES  |     | NULL    |       |
+| cust_state   | char(5)   | YES  |     | NULL    |       |
+| cust_zip     | char(10)  | YES  |     | NULL    |       |
+| cust_country | char(50)  | YES  |     | NULL    |       |
+| cust_contact | char(50)  | YES  |     | NULL    |       |
+| cust_email   | char(255) | YES  |     | NULL    |       |
++--------------+-----------+------+-----+---------+-------+
+9 rows in set (0.03 sec)
+
+mysql> DESSCRIBE Orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DESSCRIBE Orders' at line 1
+mysql> DESCRIBE Orders;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| order_num  | int(11)  | NO   | PRI | NULL    |       |
+| order_date | datetime | NO   |     | NULL    |       |
+| cust_id    | char(10) | NO   | MUL | NULL    |       |
++------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT cust_name, cust_state, (SELECT COUNT(*) AS Count_Orders FROM Orders WHERE Orders.cust_id = Customers.cust_id) AS count_orders FROM Customers ORDER BY cust_name;
++---------------+------------+--------------+
+| cust_name     | cust_state | count_orders |
++---------------+------------+--------------+
+| Fun4All       | IN         |            1 |
+| Fun4All       | AZ         |            1 |
+| Kids Place    | OH         |            0 |
+| The Toy Store | IL         |            1 |
+| Village Toys  | MI         |            2 |
++---------------+------------+--------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT COUNT(*) AS Count_Orders FROM Orders WHERE Orders.cust_id = Customers.cust_id
+    -> '
+    '> ;
+    '> ;
+    '> 
+    '> 
+    '> 
+    '> 
+    '> ;
+    '> '
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''
+;
+;
+
+
+
+
+;
+'' at line 2
+mysql> SELECT COUNT(*) AS Count_Orders FROM Orders WHERE Orders.cust_id = Customers.cust_id;
+ERROR 1054 (42S22): Unknown column 'Customers.cust_id' in 'where clause'
+mysql> SELECT cust_name, cust_state, (SELECT COUNT(*) AS Count_Orders FROM Orders WHERE cust_id = cust_id) AS count_orders FROM Customers ORDER BY cust_name;
++---------------+------------+--------------+
+| cust_name     | cust_state | count_orders |
++---------------+------------+--------------+
+| Fun4All       | IN         |            5 |
+| Fun4All       | AZ         |            5 |
+| Kids Place    | OH         |            5 |
+| The Toy Store | IL         |            5 |
+| Village Toys  | MI         |            5 |
++---------------+------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) AS Count_Orders FROM Orders
+    -> ;
++--------------+
+| Count_Orders |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT cust_id, cust_name,COUNT(*) AS Count_Orders FROM Orders
+    -> ;
+ERROR 1054 (42S22): Unknown column 'cust_name' in 'field list'
+mysql> SELECT cust_id,COUNT(*) AS Count_Orders FROM Orders
+    -> ;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'tysql.Orders.cust_id'; this is incompatible with sql_mode=only_full_group_by
+mysql> SELECT cust_id FROM Orders
+    -> ;
++------------+
+| cust_id    |
++------------+
+| 1000000001 |
+| 1000000001 |
+| 1000000003 |
+| 1000000004 |
+| 1000000005 |
++------------+
+5 rows in set (0.00 sec)
+
+mysql> DESCRIBE Products;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| prod_id    | char(10)     | NO   | PRI | NULL    |       |
+| vend_id    | char(10)     | NO   | MUL | NULL    |       |
+| prod_name  | char(255)    | NO   |     | NULL    |       |
+| prod_price | decimal(8,2) | NO   |     | NULL    |       |
+| prod_desc  | text         | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> DESCRIBE Vendors;
++--------------+----------+------+-----+---------+-------+
+| Field        | Type     | Null | Key | Default | Extra |
++--------------+----------+------+-----+---------+-------+
+| vend_id      | char(10) | NO   | PRI | NULL    |       |
+| vend_name    | char(50) | NO   |     | NULL    |       |
+| vend_address | char(50) | YES  |     | NULL    |       |
+| vend_city    | char(50) | YES  |     | NULL    |       |
+| vend_state   | char(5)  | YES  |     | NULL    |       |
+| vend_zip     | char(10) | YES  |     | NULL    |       |
+| vend_country | char(50) | YES  |     | NULL    |       |
++--------------+----------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> -- 创建联结;
+mysql> SELECT vend_name,prod_name,prod_price FROM Vendor,Products WHERE Vendors.vend_id = Products.vend_id;
+ERROR 1146 (42S02): Table 'tysql.vendor' doesn't exist
+mysql> SELECT vend_name,prod_name,prod_price FROM Vendors,Products WHERE Vendors.vend_id = Products.vend_id;
++-----------------+---------------------+------------+
+| vend_name       | prod_name           | prod_price |
++-----------------+---------------------+------------+
+| Doll House Inc. | Fish bean bag toy   |       3.49 |
+| Doll House Inc. | Bird bean bag toy   |       3.49 |
+| Doll House Inc. | Rabbit bean bag toy |       3.49 |
+| Bears R Us      | 8 inch teddy bear   |       5.99 |
+| Bears R Us      | 12 inch teddy bear  |       8.99 |
+| Bears R Us      | 18 inch teddy bear  |      11.99 |
+| Doll House Inc. | Raggedy Ann         |       4.99 |
+| Fun and Games   | King doll           |       9.49 |
+| Fun and Games   | Queen doll          |       9.49 |
++-----------------+---------------------+------------+
+9 rows in set (0.01 sec)
+
+mysql> SELECT vend_name,prod_name,prod_price FROM Vendors,Products;
++-----------------+---------------------+------------+
+| vend_name       | prod_name           | prod_price |
++-----------------+---------------------+------------+
+| Bear Emporium   | Fish bean bag toy   |       3.49 |
+| Bears R Us      | Fish bean bag toy   |       3.49 |
+| Doll House Inc. | Fish bean bag toy   |       3.49 |
+| Fun and Games   | Fish bean bag toy   |       3.49 |
+| Furball Inc.    | Fish bean bag toy   |       3.49 |
+| Jouets et ours  | Fish bean bag toy   |       3.49 |
+| Bear Emporium   | Bird bean bag toy   |       3.49 |
+| Bears R Us      | Bird bean bag toy   |       3.49 |
+| Doll House Inc. | Bird bean bag toy   |       3.49 |
+| Fun and Games   | Bird bean bag toy   |       3.49 |
+| Furball Inc.    | Bird bean bag toy   |       3.49 |
+| Jouets et ours  | Bird bean bag toy   |       3.49 |
+| Bear Emporium   | Rabbit bean bag toy |       3.49 |
+| Bears R Us      | Rabbit bean bag toy |       3.49 |
+| Doll House Inc. | Rabbit bean bag toy |       3.49 |
+| Fun and Games   | Rabbit bean bag toy |       3.49 |
+| Furball Inc.    | Rabbit bean bag toy |       3.49 |
+| Jouets et ours  | Rabbit bean bag toy |       3.49 |
+| Bear Emporium   | 8 inch teddy bear   |       5.99 |
+| Bears R Us      | 8 inch teddy bear   |       5.99 |
+| Doll House Inc. | 8 inch teddy bear   |       5.99 |
+| Fun and Games   | 8 inch teddy bear   |       5.99 |
+| Furball Inc.    | 8 inch teddy bear   |       5.99 |
+| Jouets et ours  | 8 inch teddy bear   |       5.99 |
+| Bear Emporium   | 12 inch teddy bear  |       8.99 |
+| Bears R Us      | 12 inch teddy bear  |       8.99 |
+| Doll House Inc. | 12 inch teddy bear  |       8.99 |
+| Fun and Games   | 12 inch teddy bear  |       8.99 |
+| Furball Inc.    | 12 inch teddy bear  |       8.99 |
+| Jouets et ours  | 12 inch teddy bear  |       8.99 |
+| Bear Emporium   | 18 inch teddy bear  |      11.99 |
+| Bears R Us      | 18 inch teddy bear  |      11.99 |
+| Doll House Inc. | 18 inch teddy bear  |      11.99 |
+| Fun and Games   | 18 inch teddy bear  |      11.99 |
+| Furball Inc.    | 18 inch teddy bear  |      11.99 |
+| Jouets et ours  | 18 inch teddy bear  |      11.99 |
+| Bear Emporium   | Raggedy Ann         |       4.99 |
+| Bears R Us      | Raggedy Ann         |       4.99 |
+| Doll House Inc. | Raggedy Ann         |       4.99 |
+| Fun and Games   | Raggedy Ann         |       4.99 |
+| Furball Inc.    | Raggedy Ann         |       4.99 |
+| Jouets et ours  | Raggedy Ann         |       4.99 |
+| Bear Emporium   | King doll           |       9.49 |
+| Bears R Us      | King doll           |       9.49 |
+| Doll House Inc. | King doll           |       9.49 |
+| Fun and Games   | King doll           |       9.49 |
+| Furball Inc.    | King doll           |       9.49 |
+| Jouets et ours  | King doll           |       9.49 |
+| Bear Emporium   | Queen doll          |       9.49 |
+| Bears R Us      | Queen doll          |       9.49 |
+| Doll House Inc. | Queen doll          |       9.49 |
+| Fun and Games   | Queen doll          |       9.49 |
+| Furball Inc.    | Queen doll          |       9.49 |
+| Jouets et ours  | Queen doll          |       9.49 |
++-----------------+---------------------+------------+
+54 rows in set (0.01 sec)
+
+mysql> SELECT vend_name,prod_name,prod_price FROM Vendors INNER JOIN Products ON Vendors.vend_id=Products.vend_id;
++-----------------+---------------------+------------+
+| vend_name       | prod_name           | prod_price |
++-----------------+---------------------+------------+
+| Doll House Inc. | Fish bean bag toy   |       3.49 |
+| Doll House Inc. | Bird bean bag toy   |       3.49 |
+| Doll House Inc. | Rabbit bean bag toy |       3.49 |
+| Bears R Us      | 8 inch teddy bear   |       5.99 |
+| Bears R Us      | 12 inch teddy bear  |       8.99 |
+| Bears R Us      | 18 inch teddy bear  |      11.99 |
+| Doll House Inc. | Raggedy Ann         |       4.99 |
+| Fun and Games   | King doll           |       9.49 |
+| Fun and Games   | Queen doll          |       9.49 |
++-----------------+---------------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT vend_name,prod_name,prod_price,quanity FROM OrderItems,Vendors,Products WHERE Vendors.vend_id = Products.vend_id AND OrderItems.prod_id=Products.prod_id AND order_num=20007;
+ERROR 1054 (42S22): Unknown column 'quanity' in 'field list'
+mysql> SELECT vend_name,prod_name,prod_price,quantity FROM OrderItems,Vendors,Products WHERE Vendors.vend_id = Products.vend_id AND OrderItems.prod_id=Products.prod_id AND order_num=20007;
++-----------------+---------------------+------------+----------+
+| vend_name       | prod_name           | prod_price | quantity |
++-----------------+---------------------+------------+----------+
+| Bears R Us      | 18 inch teddy bear  |      11.99 |       50 |
+| Doll House Inc. | Fish bean bag toy   |       3.49 |      100 |
+| Doll House Inc. | Bird bean bag toy   |       3.49 |      100 |
+| Doll House Inc. | Rabbit bean bag toy |       3.49 |      100 |
+| Doll House Inc. | Raggedy Ann         |       4.99 |       50 |
++-----------------+---------------------+------------+----------+
+5 rows in set (0.01 sec)
+
+mysql> DESCRIBE OrderItems;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| order_num  | int(11)      | NO   | PRI | NULL    |       |
+| order_item | int(11)      | NO   | PRI | NULL    |       |
+| prod_id    | char(10)     | NO   | MUL | NULL    |       |
+| quantity   | int(11)      | NO   |     | NULL    |       |
+| item_price | decimal(8,2) | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.08 sec)
+
+mysql> SELECT culomns FROM OrderItems;
+ERROR 1054 (42S22): Unknown column 'culomns' in 'field list'
+mysql> SELECT culomn FROM OrderItems;
+ERROR 1054 (42S22): Unknown column 'culomn' in 'field list'
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.01 sec)
+
+mysql> SHOW columns FROM OrderItems;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| order_num  | int(11)      | NO   | PRI | NULL    |       |
+| order_item | int(11)      | NO   | PRI | NULL    |       |
+| prod_id    | char(10)     | NO   | MUL | NULL    |       |
+| quantity   | int(11)      | NO   |     | NULL    |       |
+| item_price | decimal(8,2) | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT vend_name,prod_name,prod_price,quantity FROM OrderItems,Vendors,Products WHERE Vendors.vend_id = Products.vend_id AND OrderItems.prod_id=Products.prod_id AND order_num=20007;
++-----------------+---------------------+------------+----------+
+| vend_name       | prod_name           | prod_price | quantity |
++-----------------+---------------------+------------+----------+
+| Bears R Us      | 18 inch teddy bear  |      11.99 |       50 |
+| Doll House Inc. | Fish bean bag toy   |       3.49 |      100 |
+| Doll House Inc. | Bird bean bag toy   |       3.49 |      100 |
+| Doll House Inc. | Rabbit bean bag toy |       3.49 |      100 |
+| Doll House Inc. | Raggedy Ann         |       4.99 |       50 |
++-----------------+---------------------+------------+----------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT cust_name,cust_contact FROM Customers WHERE cust_id IN (SELECT cust_id FROM Orders WHERE order_num IN (SELECT order_num FROM OrderItems WHERE prod_id='RGAN01'));
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.02 sec)
+
+mysql> DESCRIBE Customers;
++--------------+-----------+------+-----+---------+-------+
+| Field        | Type      | Null | Key | Default | Extra |
++--------------+-----------+------+-----+---------+-------+
+| cust_id      | char(10)  | NO   | PRI | NULL    |       |
+| cust_name    | char(50)  | NO   |     | NULL    |       |
+| cust_address | char(50)  | YES  |     | NULL    |       |
+| cust_city    | char(50)  | YES  |     | NULL    |       |
+| cust_state   | char(5)   | YES  |     | NULL    |       |
+| cust_zip     | char(10)  | YES  |     | NULL    |       |
+| cust_country | char(50)  | YES  |     | NULL    |       |
+| cust_contact | char(50)  | YES  |     | NULL    |       |
+| cust_email   | char(255) | YES  |     | NULL    |       |
++--------------+-----------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> SELECT cust_name,cust_contact FROM Customers,Orders,OrderItems WHERE Customers.cust_id=Orders.cust_id AND OrderItems.order_num=Orders.order_num AND prod_id='RGAN01';
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT RTRIM(vend_name)+'('+RTRIM(vend_country)+')' AS vend_title FROM Vendors ORDER BY vend_name;
++------------+
+| vend_title |
++------------+
+|          0 |
+|          0 |
+|          0 |
+|          0 |
+|          0 |
+|          0 |
++------------+
+6 rows in set, 12 warnings (0.02 sec)
+
+mysql> SELECT cust_name, cust_contact FROM Customers AS C, Orders AS O, OrderItems AS OI WHERE C.cust_id=O.cust_id ADN OI.order_num=O.order_num AND prod_id='RGAN01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADN OI.order_num=O.order_num AND prod_id='RGAN01'' at line 1
+mysql> SELECT cust_name, cust_contact FROM Customers AS C, Orders AS O, OrderItems AS OI WHERE C.cust_id=O.cust_id AND OI.order_num=O.order_num AND prod_id='RGAN01';
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> --自联结
+    -> ；
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--自联结
+；' at line 1
+mysql> SELECT cust_id,cust_name,cust_contact FROM Customers WHERE cust_name=(SELECT cust_name FROM Customers WHERE cust_contact='Jim Jones');
++------------+-----------+--------------------+
+| cust_id    | cust_name | cust_contact       |
++------------+-----------+--------------------+
+| 1000000003 | Fun4All   | Jim Jones          |
+| 1000000004 | Fun4All   | Denise L. Stephens |
++------------+-----------+--------------------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT c1.cust_id, c1.cust_name, c1.cust_contact FROM Customers AS c1, Customers AS c2 WHERE c1.cust_name = c2.cust_name
+    -> AND c2.cust_contact = 'Jim Jones';
++------------+-----------+--------------------+
+| cust_id    | cust_name | cust_contact       |
++------------+-----------+--------------------+
+| 1000000003 | Fun4All   | Jim Jones          |
+| 1000000004 | Fun4All   | Denise L. Stephens |
++------------+-----------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> -- 自然联结;
+mysql> SELECT C.*,O.order_num,O.order_date,OI.prod_id,OI.quantity,OI.item_price FROM Customers AS C,Orders AS O,OrderItems AS OI WHERE C.cust_id=O.cust_id AND OI.order_num=O.order_num AND prod_id='RGAN01';
++------------+---------------+---------------------+-----------+------------+----------+--------------+--------------------+-----------------------+-----------+---------------------+---------+----------+------------+
+| cust_id    | cust_name     | cust_address        | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            | order_num | order_date          | prod_id | quantity | item_price |
++------------+---------------+---------------------+-----------+------------+----------+--------------+--------------------+-----------------------+-----------+---------------------+---------+----------+------------+
+| 1000000004 | Fun4All       | 829 Riverside Drive | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |     20007 | 2012-01-30 00:00:00 | RGAN01  |       50 |       4.49 |
+| 1000000005 | The Toy Store | 4545 53rd Street    | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |     20008 | 2012-02-03 00:00:00 | RGAN01  |        5 |       4.99 |
++------------+---------------+---------------------+-----------+------------+----------+--------------+--------------------+-----------------------+-----------+---------------------+---------+----------+------------+
+2 rows in set (0.01 sec)
+
+mysql> -- 外联结;
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Orders;
++-----------+---------------------+------------+
+| order_num | order_date          | cust_id    |
++-----------+---------------------+------------+
+|     20005 | 2012-05-01 00:00:00 | 1000000001 |
+|     20006 | 2012-01-12 00:00:00 | 1000000003 |
+|     20007 | 2012-01-30 00:00:00 | 1000000004 |
+|     20008 | 2012-02-03 00:00:00 | 1000000005 |
+|     20009 | 2012-02-08 00:00:00 | 1000000001 |
++-----------+---------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Products;
++---------+---------+---------------------+------------+-----------------------------------------------------------------------+
+| prod_id | vend_id | prod_name           | prod_price | prod_desc                                                             |
++---------+---------+---------------------+------------+-----------------------------------------------------------------------+
+| BNBG01  | DLL01   | Fish bean bag toy   |       3.49 | Fish bean bag toy, complete with bean bag worms with which to feed it |
+| BNBG02  | DLL01   | Bird bean bag toy   |       3.49 | Bird bean bag toy, eggs are not included                              |
+| BNBG03  | DLL01   | Rabbit bean bag toy |       3.49 | Rabbit bean bag toy, comes with bean bag carrots                      |
+| BR01    | BRS01   | 8 inch teddy bear   |       5.99 | 8 inch teddy bear, comes with cap and jacket                          |
+| BR02    | BRS01   | 12 inch teddy bear  |       8.99 | 12 inch teddy bear, comes with cap and jacket                         |
+| BR03    | BRS01   | 18 inch teddy bear  |      11.99 | 18 inch teddy bear, comes with cap and jacket                         |
+| RGAN01  | DLL01   | Raggedy Ann         |       4.99 | 18 inch Raggedy Ann doll                                              |
+| RYL01   | FNG01   | King doll           |       9.49 | 12 inch king doll with royal garments and crown                       |
+| RYL02   | FNG01   | Queen doll          |       9.49 | 12 inch queen doll with royal garments and crown                      |
++---------+---------+---------------------+------------+-----------------------------------------------------------------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Vendors;
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+| vend_id | vend_name       | vend_address    | vend_city  | vend_state | vend_zip | vend_country |
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+| BRE02   | Bear Emporium   | 500 Park Street | Anytown    | OH         | 44333    | USA          |
+| BRS01   | Bears R Us      | 123 Main Street | Bear Town  | MI         | 44444    | USA          |
+| DLL01   | Doll House Inc. | 555 High Street | Dollsville | CA         | 99999    | USA          |
+| FNG01   | Fun and Games   | 42 Galaxy Road  | London     | NULL       | N16 6PS  | England      |
+| FRB01   | Furball Inc.    | 1000 5th Avenue | New York   | NY         | 11111    | USA          |
+| JTS01   | Jouets et ours  | 1 Rue Amusement | Paris      | NULL       | 45678    | France       |
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT C.cust_id, C.cust_name,O.order_num FROM Custermers as C INNER JOIN Orders AS O ON C.cust_id=O.cust_id;
+ERROR 1146 (42S02): Table 'tysql.custermers' doesn't exist
+mysql> SELECT C.cust_id, C.cust_name,O.order_num FROM Custormers as C INNER JOIN Orders AS O ON C.cust_id=O.cust_id;
+ERROR 1146 (42S02): Table 'tysql.custormers' doesn't exist
+mysql> SELECT C.cust_id, C.cust_name,O.order_num FROM Customers as C INNER JOIN Orders AS O ON C.cust_id=O.cust_id;
++------------+---------------+-----------+
+| cust_id    | cust_name     | order_num |
++------------+---------------+-----------+
+| 1000000001 | Village Toys  |     20005 |
+| 1000000001 | Village Toys  |     20009 |
+| 1000000003 | Fun4All       |     20006 |
+| 1000000004 | Fun4All       |     20007 |
+| 1000000005 | The Toy Store |     20008 |
++------------+---------------+-----------+
+5 rows in set (0.03 sec)
+
+mysql> --外联结
+    -> ；
+    -> '
+    '> '
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--外联结
+；
+'
+'' at line 1
+mysql> SELECT C.cust_id, C.cust_name,O.order_num FROM Customers LEFT OUTER JOIN Orders AS O ON C.cust_id=O.cust_id;                    
+ERROR 1054 (42S22): Unknown column 'C.cust_id' in 'field list'
+mysql> SELECT C.cust_id, C.cust_name,O.order_num FROM Customers AS C LEFT OUTER JOIN Orders AS O ON C.cust_id=O.cust_id;
++------------+---------------+-----------+
+| cust_id    | cust_name     | order_num |
++------------+---------------+-----------+
+| 1000000001 | Village Toys  |     20005 |
+| 1000000001 | Village Toys  |     20009 |
+| 1000000002 | Kids Place    |      NULL |
+| 1000000003 | Fun4All       |     20006 |
+| 1000000004 | Fun4All       |     20007 |
+| 1000000005 | The Toy Store |     20008 |
++------------+---------------+-----------+
+6 rows in set (0.01 sec)
+
+mysql> DESCRIBE orders;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| order_num  | int(11)  | NO   | PRI | NULL    |       |
+| order_date | datetime | NO   |     | NULL    |       |
+| cust_id    | char(10) | NO   | MUL | NULL    |       |
++------------+----------+------+-----+---------+-------+
+3 rows in set (0.15 sec)
+
+mysql> SELECT C.cust_id, C.cust_name,O.order_num FROM Customers AS C RIGHT OUTER JOIN Orders AS O ON C.cust_id=O.cust_id;
++------------+---------------+-----------+
+| cust_id    | cust_name     | order_num |
++------------+---------------+-----------+
+| 1000000001 | Village Toys  |     20005 |
+| 1000000001 | Village Toys  |     20009 |
+| 1000000003 | Fun4All       |     20006 |
+| 1000000004 | Fun4All       |     20007 |
+| 1000000005 | The Toy Store |     20008 |
++------------+---------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> -- LEFT 选取左边表所有行，RIGHT 选取右边表所有行
+mysql> SELECT C.cust_id, C.cust_name,O.order_num FROM Customers AS C FULL OUTER JOIN Orders AS O ON C.cust_id=O.cust_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FULL OUTER JOIN Orders AS O ON C.cust_id=O.cust_id' at line 1
+mysql> SELECT C.cust_id, C.cust_name,O.order_num FROM Customers AS C FULL OUTER JOIN Orders AS O ON C.cust_id=O.cust_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FULL OUTER JOIN Orders AS O ON C.cust_id=O.cust_id' at line 1
+mysql> SELECT Customers.cust_id, Orders.order_num FROM Orders FULL OUTER JOIN Customers
+    -> ON Orders.cust_id = Customers.cust_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OUTER JOIN Customers
+ON Orders.cust_id = Customers.cust_id' at line 1
+mysql> SELECT C.cust_id, C.cust_name,O.COUNT(O.order_num) FROM Customers as C INNER JOIN Orders AS O ON C.cust_id=O.cust_id;
+ERROR 1630 (42000): FUNCTION o.COUNT does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> SELECT C.cust_id, C.cust_name,O.COUNT(O.order_num) FROM Customers as C INNER JOIN Orders AS O ON C.cust_id=O.cust_id GROUP BY C.cust_id;
+ERROR 1630 (42000): FUNCTION o.COUNT does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> SELECT C.cust_id, C.cust_name,COUNT(O.order_num) FROM Customers as C INNER JOIN Orders AS O ON C.cust_id=O.cust_id GROUP BY C.cust_id;
++------------+---------------+--------------------+
+| cust_id    | cust_name     | COUNT(O.order_num) |
++------------+---------------+--------------------+
+| 1000000001 | Village Toys  |                  2 |
+| 1000000003 | Fun4All       |                  1 |
+| 1000000004 | Fun4All       |                  1 |
+| 1000000005 | The Toy Store |                  1 |
++------------+---------------+--------------------+
+4 rows in set (0.02 sec)
+
+mysql> SELECT C.cust_id, C.cust_name,COUNT(O.order_num) FROM Customers as C LEFT OUTER JOIN Orders AS O ON C.cust_id=O.cust_id GROUP BY C.cust_id;
++------------+---------------+--------------------+
+| cust_id    | cust_name     | COUNT(O.order_num) |
++------------+---------------+--------------------+
+| 1000000001 | Village Toys  |                  2 |
+| 1000000002 | Kids Place    |                  0 |
+| 1000000003 | Fun4All       |                  1 |
+| 1000000004 | Fun4All       |                  1 |
+| 1000000005 | The Toy Store |                  1 |
++------------+---------------+--------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_state IN ('IL','IN','MI');
++---------------+--------------+-----------------------+
+| cust_name     | cust_contact | cust_email            |
++---------------+--------------+-----------------------+
+| Village Toys  | John Smith   | sales@villagetoys.com |
+| Fun4All       | Jim Jones    | jjones@fun4all.com    |
+| The Toy Store | Kim Howard   | NULL                  |
++---------------+--------------+-----------------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_name='Fun4All';
++-----------+--------------------+-----------------------+
+| cust_name | cust_contact       | cust_email            |
++-----------+--------------------+-----------------------+
+| Fun4All   | Jim Jones          | jjones@fun4all.com    |
+| Fun4All   | Denise L. Stephens | dstephens@fun4all.com |
++-----------+--------------------+-----------------------+
+2 rows in set (0.01 sec)
+
+mysql> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_name='Fun4All' 
+    -> UNION
+    -> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_state IN ('IL','IN','MI');
++---------------+--------------------+-----------------------+
+| cust_name     | cust_contact       | cust_email            |
++---------------+--------------------+-----------------------+
+| Fun4All       | Jim Jones          | jjones@fun4all.com    |
+| Fun4All       | Denise L. Stephens | dstephens@fun4all.com |
+| Village Toys  | John Smith         | sales@villagetoys.com |
+| The Toy Store | Kim Howard         | NULL                  |
++---------------+--------------------+-----------------------+
+4 rows in set (0.02 sec)
+
+mysql> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_state IN ('IL','IN','MI');
++---------------+--------------+-----------------------+
+| cust_name     | cust_contact | cust_email            |
++---------------+--------------+-----------------------+
+| Village Toys  | John Smith   | sales@villagetoys.com |
+| Fun4All       | Jim Jones    | jjones@fun4all.com    |
+| The Toy Store | Kim Howard   | NULL                  |
++---------------+--------------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_state IN ('IL','IN','MI') OR cust_name='Fun4All';
++---------------+--------------------+-----------------------+
+| cust_name     | cust_contact       | cust_email            |
++---------------+--------------------+-----------------------+
+| Village Toys  | John Smith         | sales@villagetoys.com |
+| Fun4All       | Jim Jones          | jjones@fun4all.com    |
+| Fun4All       | Denise L. Stephens | dstephens@fun4all.com |
+| The Toy Store | Kim Howard         | NULL                  |
++---------------+--------------------+-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_name='Fun4All'        -> UNION ALL
+    -> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_state IN ('IL','IN','MI');
++---------------+--------------------+-----------------------+
+| cust_name     | cust_contact       | cust_email            |
++---------------+--------------------+-----------------------+
+| Fun4All       | Jim Jones          | jjones@fun4all.com    |
+| Fun4All       | Denise L. Stephens | dstephens@fun4all.com |
+| Village Toys  | John Smith         | sales@villagetoys.com |
+| Fun4All       | Jim Jones          | jjones@fun4all.com    |
+| The Toy Store | Kim Howard         | NULL                  |
++---------------+--------------------+-----------------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_name='Fun4All' UNION ALL SELECT cust_name,cust_contact,cust_email FROM Customers WHERE cust_state IN ('IL','IN','MI') ORDER BY cust_name,cust_contact;
++---------------+--------------------+-----------------------+
+| cust_name     | cust_contact       | cust_email            |
++---------------+--------------------+-----------------------+
+| Fun4All       | Denise L. Stephens | dstephens@fun4all.com |
+| Fun4All       | Jim Jones          | jjones@fun4all.com    |
+| Fun4All       | Jim Jones          | jjones@fun4all.com    |
+| The Toy Store | Kim Howard         | NULL                  |
+| Village Toys  | John Smith         | sales@villagetoys.com |
++---------------+--------------------+-----------------------+
+5 rows in set (0.01 sec)
+
+mysql> -- MINUS(UNION:EXCEPT)用于检测第一个表中存在而第二个表中不存在的行；INTERSECT 用于检 测两个表中都存在的行
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO Customers VALUES('1000000006','Toy Land','123 Any Street','New York','NY','11111','USA',NULL,NULL);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
+| 1000000006 | Toy Land      | 123 Any Street       | New York  | NY         | 11111    | USA          | NULL               | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> -- 安全的insert
+mysql> DELECT * FROM Customers WHERE cust_id ='1000000006';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELECT * FROM Customers WHERE cust_id ='1000000006'' at line 1
+mysql> DELET * FROM Customers WHERE cust_id ='1000000006';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELET * FROM Customers WHERE cust_id ='1000000006'' at line 1
+mysql> DELETE * FROM Customers WHERE cust_id ='1000000006';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* FROM Customers WHERE cust_id ='1000000006'' at line 1
+mysql> DELETE FROM Customers WHERE cust_id ='1000000006';
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql>  -- 安全的insert
+mysql> INSERT INTO Customers (cust_id, cust_name, cust_address,cust_city,cust_state,cust_zip,cust_contact,cust_email,cust_country) VALUES('1000000006','Toy Land', '123 Any Street','New York','NY','11111',NULL,NULL,'USA');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM Customers;                                                                                          +------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
+| 1000000006 | Toy Land      | 123 Any Street       | New York  | NY         | 11111    | USA          | NULL               | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> SHOW tables;
+ERROR 2006 (HY000): MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    9
+Current database: tysql
+
++-----------------+
+| Tables_in_tysql |
++-----------------+
+| Customers       |
+| OrderItems      |
+| Orders          |
+| Products        |
+| Vendors         |
++-----------------+
+5 rows in set (0.32 sec)
+
+mysql> help
+
+For information about MySQL products and services, visit:
+   http://www.mysql.com/
+For developer information, including the MySQL Reference Manual, visit:
+   http://dev.mysql.com/
+To buy MySQL Enterprise support, training, or other products, visit:
+   https://shop.mysql.com/
+
+List of all MySQL commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+
+For server side help, type 'help contents'
+
+mysql> CREATE TABLE CustNew( cust_id      int       NOT NULL AUTO_INCREMENT,)
+    ->   cust_name    char(50)  NOT NULL ,
+    ->   cust_address char(50)  NULL ,
+    ->   cust_city    char(50)  NULL ,
+    ->   cust_state   char(5)   NULL ,
+    ->   cust_zip     char(10)  NULL ,
+    ->   cust_country char(50)  NULL ,
+    ->   cust_contact char(50)  NULL ,
+    ->   cust_email   char(255) NULL ,
+    ->   PRIMARY KEY (cust_id)；
+    -> ；
+    -> ；
+    -> ）；
+    -> exist
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+  cust_name    char(50)  NOT NULL ,
+  cust_address char(50)  NULL ,
+  cust_cit' at line 1
+mysql> CREATE TABLE CustNew( cust_id      int       NOT NULL AUTO_INCREMENT,  cust_name    char(50)  NOT NULL ,   cust_address char(50)  NULL ,   cust_city    char(50)  NULL ,   cust_state   char(5)   NULL ,   cust_zip     char(10)  NULL ,   cust_country char(50)  NULL ,   cust_contact char(50)  NULL ,   cust_email   char(255) NULL ,   PRIMARY KEY (cust_id));
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_tysql |
++-----------------+
+| CustNew         |
+| Customers       |
+| OrderItems      |
+| Orders          |
+| Products        |
+| Vendors         |
++-----------------+
+6 rows in set (0.00 sec)
+
+mysql> DESCRIBE CustNew
+    -> ;
++--------------+-----------+------+-----+---------+----------------+
+| Field        | Type      | Null | Key | Default | Extra          |
++--------------+-----------+------+-----+---------+----------------+
+| cust_id      | int(11)   | NO   | PRI | NULL    | auto_increment |
+| cust_name    | char(50)  | NO   |     | NULL    |                |
+| cust_address | char(50)  | YES  |     | NULL    |                |
+| cust_city    | char(50)  | YES  |     | NULL    |                |
+| cust_state   | char(5)   | YES  |     | NULL    |                |
+| cust_zip     | char(10)  | YES  |     | NULL    |                |
+| cust_country | char(50)  | YES  |     | NULL    |                |
+| cust_contact | char(50)  | YES  |     | NULL    |                |
+| cust_email   | char(255) | YES  |     | NULL    |                |
++--------------+-----------+------+-----+---------+----------------+
+9 rows in set (0.02 sec)
+
+mysql> SELECT * FROM CustNew;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
+| 1000000006 | Toy Land      | 123 Any Street       | New York  | NY         | 11111    | USA          | NULL               | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> DELETE FROM Customers WHERE cust_id ='1000000006';                                                                        
+Query OK, 1 row affected (0.09 sec)
+
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO CustNew (cust_id, cust_name, cust_address,cust_city,cust_state,cust_zip,cust_country) VALUES('1000000006','Toy Land', '123 Any Street','New York','NY','11111','USA');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM CustNew;
++------------+-----------+----------------+-----------+------------+----------+--------------+--------------+------------+
+| cust_id    | cust_name | cust_address   | cust_city | cust_state | cust_zip | cust_country | cust_contact | cust_email |
++------------+-----------+----------------+-----------+------------+----------+--------------+--------------+------------+
+| 1000000006 | Toy Land  | 123 Any Street | New York  | NY         | 11111    | USA          | NULL         | NULL       |
++------------+-----------+----------------+-----------+------------+----------+--------------+--------------+------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO Customers(cust_id, cust_contact, cust_email, cust_name, cust_address,cust_city,cust_state,cust_zip,cust_country) SELECT cust_id,cust_contact, cust_email, cust_name, cust_address,cust_city,cust_state,cust_zip,cust_country FROM CustNew;
+Query OK, 1 row affected (0.05 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
+| 1000000006 | Toy Land      | 123 Any Street       | New York  | NY         | 11111    | USA          | NULL               | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CustNew;                                                                                                      +------------+-----------+----------------+-----------+------------+----------+--------------+--------------+------------+
+| cust_id    | cust_name | cust_address   | cust_city | cust_state | cust_zip | cust_country | cust_contact | cust_email |
++------------+-----------+----------------+-----------+------------+----------+--------------+--------------+------------+
+| 1000000006 | Toy Land  | 123 Any Street | New York  | NY         | 11111    | USA          | NULL         | NULL       |
++------------+-----------+----------------+-----------+------------+----------+--------------+--------------+------------+
+1 row in set (0.00 sec)
+
+mysql> -- INSERT SELECT将数据添加到一个已经存在的表；SELECT INTO 将数据复制到一个新表
+mysql> SELECT * INTO  CustCopy FROM Customers;
+ERROR 1327 (42000): Undeclared variable: CustCopy
+mysql> CREATE TABLE CustCopy As SELECT * FROM Customers;
+Query OK, 6 rows affected (0.18 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> SHOW tables;
++-----------------+
+| Tables_in_tysql |
++-----------------+
+| CustCopy        |
+| CustNew         |
+| Customers       |
+| OrderItems      |
+| Orders          |
+| Products        |
+| Vendors         |
++-----------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CustCopy;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
+| 1000000006 | Toy Land      | 123 Any Street       | New York  | NY         | 11111    | USA          | NULL               | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE Customers SET cust_email='kim@thetoystore.com' WHERE cust_id='1000000005';
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | kim@thetoystore.com   |
+| 1000000006 | Toy Land      | 123 Any Street       | New York  | NY         | 11111    | USA          | NULL               | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE Customers SET cust_contact='Sam Roberts',cust_email='sam@toyland.com' WHERE cust_id='1000000006';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM Customers;                                                  +------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | kim@thetoystore.com   |
+| 1000000006 | Toy Land      | 123 Any Street       | New York  | NY         | 11111    | USA          | Sam Roberts        | sam@toyland.com       |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE Customers SET cust_eamil=NULL WEHRE cust_id='1000000005';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WEHRE cust_id='1000000005'' at line 1
+mysql> mysql> UPDATE Customers SET cust_eamil=NULL WHERE cust_id='1000000005';
+ERROR 1054 (42S22): Unknown column 'cust_eamil' in 'field list'
+mysql> UPDATE Customers SET cust_eamil=NULL WHERE cust_id='1000000005';
+ERROR 1054 (42S22): Unknown column 'cust_eamil' in 'field list'
+mysql> UPDATE Customers SET cust_email=NULL WHERE cust_id='1000000005';
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> DELETE FROM Customers WHERE cust_id='1000000006';
+Query OK, 1 row affected (0.07 sec)
+
+mysql> SELECT * FROM Customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> -- 表创建
+mysql> CREATE TABLE Products 
+    -> (
+    -> prod_id CHAR(10) NOT NULL,
+    -> vend_id CHAR(10) NOT NULL,
+    -> prod_name CHAR(254) NOT NULL,
+    -> prod_price DECIMAL(8,2) NOT NULL,
+    -> prod_desc VARCHAR(1000) NULL
+    -> );
+ERROR 1050 (42S01): Table 'products' already exists
+mysql> mysql> CREATE TABLE Products ( prod_id CHAR(10) NOT NULL, vend_id CHAR(10) NOT NULL, prod_name CHAR(25NULL, prod_price DECIMAL(8,2) NOT NULL, prod_desc text(1000) NULL );
+ERROR 1050 (42S01): Table 'products' already exists
+mysql> -- 空字符串是一个有效的值；NULL值是没有值
+mysql> -- 空字符串是一个有效的值，表示方式：''；NULL值是没有值
+mysql> -- CURRENT_DATE()，指定引用系统日期的函数或变量
+mysql> 
+  [Restored Jun 25, 2019 at 8:08:01 AM]
+Last login: Mon Jun 24 18:28:32 on ttys002
+Restored session: Mon Jun 24 19:04:31 CST 2019
+KJ:~ kris$ 
+KJ:~ kris$ 
+KJ:~ kris$ 
+KJ:~ kris$ 
+KJ:~ kris$ 
+KJ:~ kris$ 
+  [Restored Jun 26, 2019 at 9:18:32 AM]
+Last login: Tue Jun 25 10:16:15 on ttys002
+Restored session: Wed Jun 26 09:18:26 CST 2019
+KJ:~ kris$ 
+  [Restored Jun 26, 2019 at 9:20:22 AM]
+Last login: Wed Jun 26 09:20:04 on console
+Restored session: Wed Jun 26 09:18:48 CST 2019
+KJ:~ kris$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.13 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> ALTER TABLE Vendors ADD venmysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> SHOW DATABSES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DATABSES' at line 1
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| crashcourse        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tysql              |
++--------------------+
+6 rows in set (0.16 sec)
+
+mysql> USE crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> USE tysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| crashcourse        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tysql              |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_tysql |
++-----------------+
+| CustCopy        |
+| CustNew         |
+| Customers       |
+| OrderItems      |
+| Orders          |
+| Products        |
+| Vendors         |
++-----------------+
+7 rows in set (0.00 sec)
+
+mysql> SHOW Vendors;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Vendors' at line 1
+mysql> DESCRIBE Vendors;
++--------------+----------+------+-----+---------+-------+
+| Field        | Type     | Null | Key | Default | Extra |
++--------------+----------+------+-----+---------+-------+
+| vend_id      | char(10) | NO   | PRI | NULL    |       |
+| vend_name    | char(50) | NO   |     | NULL    |       |
+| vend_address | char(50) | YES  |     | NULL    |       |
+| vend_city    | char(50) | YES  |     | NULL    |       |
+| vend_state   | char(5)  | YES  |     | NULL    |       |
+| vend_zip     | char(10) | YES  |     | NULL    |       |
+| vend_country | char(50) | YES  |     | NULL    |       |
++--------------+----------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> SELECT * FROM Vendors;
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+| vend_id | vend_name       | vend_address    | vend_city  | vend_state | vend_zip | vend_country |
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+| BRE02   | Bear Emporium   | 500 Park Street | Anytown    | OH         | 44333    | USA          |
+| BRS01   | Bears R Us      | 123 Main Street | Bear Town  | MI         | 44444    | USA          |
+| DLL01   | Doll House Inc. | 555 High Street | Dollsville | CA         | 99999    | USA          |
+| FNG01   | Fun and Games   | 42 Galaxy Road  | London     | NULL       | N16 6PS  | England      |
+| FRB01   | Furball Inc.    | 1000 5th Avenue | New York   | NY         | 11111    | USA          |
+| JTS01   | Jouets et ours  | 1 Rue Amusement | Paris      | NULL       | 45678    | France       |
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+6 rows in set (0.01 sec)
+
+mysql> ALTER TABLE Vendors ADD vend_phone CHAR(20);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE Vendors;
++--------------+----------+------+-----+---------+-------+
+| Field        | Type     | Null | Key | Default | Extra |
++--------------+----------+------+-----+---------+-------+
+| vend_id      | char(10) | NO   | PRI | NULL    |       |
+| vend_name    | char(50) | NO   |     | NULL    |       |
+| vend_address | char(50) | YES  |     | NULL    |       |
+| vend_city    | char(50) | YES  |     | NULL    |       |
+| vend_state   | char(5)  | YES  |     | NULL    |       |
+| vend_zip     | char(10) | YES  |     | NULL    |       |
+| vend_country | char(50) | YES  |     | NULL    |       |
+| vend_phone   | char(20) | YES  |     | NULL    |       |
++--------------+----------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> SELECT * FROM Vendors;
++---------+-----------------+-----------------+------------+------------+----------+--------------+------------+
+| vend_id | vend_name       | vend_address    | vend_city  | vend_state | vend_zip | vend_country | vend_phone |
++---------+-----------------+-----------------+------------+------------+----------+--------------+------------+
+| BRE02   | Bear Emporium   | 500 Park Street | Anytown    | OH         | 44333    | USA          | NULL       |
+| BRS01   | Bears R Us      | 123 Main Street | Bear Town  | MI         | 44444    | USA          | NULL       |
+| DLL01   | Doll House Inc. | 555 High Street | Dollsville | CA         | 99999    | USA          | NULL       |
+| FNG01   | Fun and Games   | 42 Galaxy Road  | London     | NULL       | N16 6PS  | England      | NULL       |
+| FRB01   | Furball Inc.    | 1000 5th Avenue | New York   | NY         | 11111    | USA          | NULL       |
+| JTS01   | Jouets et ours  | 1 Rue Amusement | Paris      | NULL       | 45678    | France       | NULL       |
++---------+-----------------+-----------------+------------+------------+----------+--------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Vendors DROP COLUMN vend_phone;
+Query OK, 0 rows affected (0.25 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE Vendors;
++--------------+----------+------+-----+---------+-------+
+| Field        | Type     | Null | Key | Default | Extra |
++--------------+----------+------+-----+---------+-------+
+| vend_id      | char(10) | NO   | PRI | NULL    |       |
+| vend_name    | char(50) | NO   |     | NULL    |       |
+| vend_address | char(50) | YES  |     | NULL    |       |
+| vend_city    | char(50) | YES  |     | NULL    |       |
+| vend_state   | char(5)  | YES  |     | NULL    |       |
+| vend_zip     | char(10) | YES  |     | NULL    |       |
+| vend_country | char(50) | YES  |     | NULL    |       |
++--------------+----------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> xmysql> 
+mysql> 
+mysql> 
+mysql> SELECT cust_name, cust_contact
+    -> FROM Customers, Orders, OrderItems WHERE Customers.cust_id = Orders.cust_id
+    -> AND OrderItems.order_num = Orders.order_num AND prod_id = 'RGAN01';
++---------------+--------------------+
+| cust_name     | cust_contact       |
++---------------+--------------------+
+| Fun4All       | Denise L. Stephens |
+| The Toy Store | Kim Howard         |
++---------------+--------------------+
+2 rows in set (0.01 sec)
+
+mysql> CREATEVIEW 创建视图; DROP VIEW viewname 删除视图
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATEVIEW 创建视图' at line 1
+    -> ；
+    -> ；
+    -> -- 
+    -> ；
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '删除视图
+；
+；
+
+；' at line 1
+mysql> -- 创建ProductCustomers
+mysql> CREATE VIEW ProductCustomers AS SELECT cust_name, cust_contact, prod_id FROM Customers, Orders, OrderItems WHERE Customers.cust_id = Orders.cust_id
+    -> AND OrderItems.order_num = Orders.order_num;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> 
+mysql> SELECT * FROM ProductCustomers;
++---------------+--------------------+---------+
+| cust_name     | cust_contact       | prod_id |
++---------------+--------------------+---------+
+| Village Toys  | John Smith         | BR01    |
+| Village Toys  | John Smith         | BR03    |
+| Village Toys  | John Smith         | BNBG01  |
+| Village Toys  | John Smith         | BNBG02  |
+| Village Toys  | John Smith         | BNBG03  |
+| Fun4All       | Jim Jones          | BR01    |
+| Fun4All       | Jim Jones          | BR02    |
+| Fun4All       | Jim Jones          | BR03    |
+| Fun4All       | Denise L. Stephens | BR03    |
+| Fun4All       | Denise L. Stephens | BNBG01  |
+| Fun4All       | Denise L. Stephens | BNBG02  |
+| Fun4All       | Denise L. Stephens | BNBG03  |
+| Fun4All       | Denise L. Stephens | RGAN01  |
+| The Toy Store | Kim Howard         | RGAN01  |
+| The Toy Store | Kim Howard         | BR03    |
+| The Toy Store | Kim Howard         | BNBG01  |
+| The Toy Store | Kim Howard         | BNBG02  |
+| The Toy Store | Kim Howard         | BNBG03  |
++---------------+--------------------+---------+
+18 rows in set (0.01 sec)
+
+mysql> SELECT * FROM ProductCustomers WHERE prod_id = 'RGAN01';
++---------------+--------------------+---------+
+| cust_name     | cust_contact       | prod_id |
++---------------+--------------------+---------+
+| Fun4All       | Denise L. Stephens | RGAN01  |
+| The Toy Store | Kim Howard         | RGAN01  |
++---------------+--------------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT RTRIM(vend_name) +'('+RTRIM(vend_country)+')' AS vend_title FROM Vendors ORDER BY vend_name;
++------------+
+| vend_title |
++------------+
+|          0 |
+|          0 |
+|          0 |
+|          0 |
+|          0 |
+|          0 |
++------------+
+6 rows in set, 12 warnings (0.02 sec)
+
+mysql> SELECT * FROM Vendors;
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+| vend_id | vend_name       | vend_address    | vend_city  | vend_state | vend_zip | vend_country |
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+| BRE02   | Bear Emporium   | 500 Park Street | Anytown    | OH         | 44333    | USA          |
+| BRS01   | Bears R Us      | 123 Main Street | Bear Town  | MI         | 44444    | USA          |
+| DLL01   | Doll House Inc. | 555 High Street | Dollsville | CA         | 99999    | USA          |
+| FNG01   | Fun and Games   | 42 Galaxy Road  | London     | NULL       | N16 6PS  | England      |
+| FRB01   | Furball Inc.    | 1000 5th Avenue | New York   | NY         | 11111    | USA          |
+| JTS01   | Jouets et ours  | 1 Rue Amusement | Paris      | NULL       | 45678    | France       |
++---------+-----------------+-----------------+------------+------------+----------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT vend_name + '(' + vend_country + ')' FROM Vendors ORDER BY vend_name;
++--------------------------------------+
+| vend_name + '(' + vend_country + ')' |
++--------------------------------------+
+|                                    0 |
+|                                    0 |
+|                                    0 |
+|                                    0 |
+|                                    0 |
+|                                    0 |
++--------------------------------------+
+6 rows in set, 24 warnings (0.00 sec)
+
+mysql> SELECT vend_name + '(' + vend_country + ')' FROM Vendors;
++--------------------------------------+
+| vend_name + '(' + vend_country + ')' |
++--------------------------------------+
+|                                    0 |
+|                                    0 |
+|                                    0 |
+|                                    0 |
+|                                    0 |
+|                                    0 |
++--------------------------------------+
+6 rows in set, 24 warnings (0.00 sec)
+
+mysql> SELECT vend_name FROM Vendors;
++-----------------+
+| vend_name       |
++-----------------+
+| Bear Emporium   |
+| Bears R Us      |
+| Doll House Inc. |
+| Fun and Games   |
+| Furball Inc.    |
+| Jouets et ours  |
++-----------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT vend_name + vend_country FROM Vendors;
++--------------------------+
+| vend_name + vend_country |
++--------------------------+
+|                        0 |
+|                        0 |
+|                        0 |
+|                        0 |
+|                        0 |
+|                        0 |
++--------------------------+
+6 rows in set, 12 warnings (0.00 sec)
+
+mysql> SELECT Concat(RTRIM(vend_name),'(',RTRIM(vend_country),')') FROM Vendors ORDER BY vend_name;
++------------------------------------------------------+
+| Concat(RTRIM(vend_name),'(',RTRIM(vend_country),')') |
++------------------------------------------------------+
+| Bear Emporium(USA)                                   |
+| Bears R Us(USA)                                      |
+| Doll House Inc.(USA)                                 |
+| Fun and Games(England)                               |
+| Furball Inc.(USA)                                    |
+| Jouets et ours(France)                               |
++------------------------------------------------------+
+6 rows in set (0.01 sec)
+
+mysql> CREATE VIEW VendorLocations AS SELECT Concat(RTRIM(vend_name),'(',RTRIM(vend_country),')') AS vend_title FROM Vendors;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SELECT * FROM VendorLocations;
++------------------------+
+| vend_title             |
++------------------------+
+| Bear Emporium(USA)     |
+| Bears R Us(USA)        |
+| Doll House Inc.(USA)   |
+| Fun and Games(England) |
+| Furball Inc.(USA)      |
+| Jouets et ours(France) |
++------------------------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE VIEW CustomerEMailList AS SELECT cust_id,cust_name,cust_email FROM Customers WHERE cust_emial IS NOT NULL;
+ERROR 1054 (42S22): Unknown column 'cust_emial' in 'where clause'
+mysql> CREATE VIEW CustomerEMailList AS SELECT cust_id,cust_name,cust_email FROM Customers WHERE cust_email IS NOT NULL;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> S
+    -> ELECT * FROM CustomersEMailList;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'S
+ELECT * FROM CustomersEMailList' at line 1
+mysql> SELECT * FROM CustomersEMailList;
+ERROR 1146 (42S02): Table 'tysql.customersemaillist' doesn't exist
+mysql> SELECT * FROM CustomerEMailList;
++------------+--------------+-----------------------+
+| cust_id    | cust_name    | cust_email            |
++------------+--------------+-----------------------+
+| 1000000001 | Village Toys | sales@villagetoys.com |
+| 1000000003 | Fun4All      | jjones@fun4all.com    |
+| 1000000004 | Fun4All      | dstephens@fun4all.com |
++------------+--------------+-----------------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT prod_id,quantity,item_price,quantity*item_price AS expanded_price FROM OrderItems WHERE order_num=20008;
++---------+----------+------------+----------------+
+| prod_id | quantity | item_price | expanded_price |
++---------+----------+------------+----------------+
+| RGAN01  |        5 |       4.99 |          24.95 |
+| BR03    |        5 |      11.99 |          59.95 |
+| BNBG01  |       10 |       3.49 |          34.90 |
+| BNBG02  |       10 |       3.49 |          34.90 |
+| BNBG03  |       10 |       3.49 |          34.90 |
++---------+----------+------------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> CREATE VIEW OrderItemsExpanded AS SELECT order_num,prod_id,quantity,quantity*item_price AS expanded_price FROM OrderItems WHERE order_num=20008;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.00 sec)
+
+mysql> SELECT * FROM OrderItemsExpanded WHERE order_num=20008;
++-----------+---------+----------+----------------+
+| order_num | prod_id | quantity | expanded_price |
++-----------+---------+----------+----------------+
+|     20008 | RGAN01  |        5 |          24.95 |
+|     20008 | BR03    |        5 |          59.95 |
+|     20008 | BNBG01  |       10 |          34.90 |
+|     20008 | BNBG02  |       10 |          34.90 |
+|     20008 | BNBG03  |       10 |          34.90 |
++-----------+---------+----------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> SHOW VIEWS;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VIEWS' at line 1
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_tysql    |
++--------------------+
+| CustCopy           |
+| CustNew            |
+| customeremaillist  |
+| Customers          |
+| OrderItems         |
+| orderitemsexpanded |
+| Orders             |
+| productcustomers   |
+| Products           |
+| vendorlocations    |
+| Vendors            |
++--------------------+
+11 rows in set (0.04 sec)
+
+mysql> 
+  [Restored Jun 28, 2019 at 2:41:44 PM]
+Last login: Fri Jun 28 14:41:30 on console
+Restored session: Fri Jun 28 14:40:18 CST 2019
+KJ:~ kris$ mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+KJ:~ kris$ mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+KJ:~ kris$ mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+KJ:~ kris$ mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+KJ:~ kris$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.13 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW databases;
++--------------------+
+| Database           |
++--------------------+
+| crashcourse        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| tysql              |
++--------------------+
+6 rows in set (0.16 sec)
+
+mysql> use tysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_tysql    |
++--------------------+
+| CustCopy           |
+| CustNew            |
+| customeremaillist  |
+| Customers          |
+| OrderItems         |
+| orderitemsexpanded |
+| Orders             |
+| productcustomers   |
+| Products           |
+| vendorlocations    |
+| Vendors            |
++--------------------+
+11 rows in set (0.01 sec)
+
+mysql> CREATE PROCEDURE MailingListCount AS DECLARE @cnt INTEGER SELECT @cnt=COUNT(*) FROM Customers WHERE NOT cust-email IS NULL; RETURN @cnt;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS DECLARE @cnt INTEGER SELECT @cnt=COUNT(*) FROM Customers WHERE NOT cust-email' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'RETURN @cnt' at line 1
+mysql> 
+  [Restored Jul 4, 2019 at 9:40:42 AM]
+Last login: Thu Jul  4 09:40:30 on console
+Restored session: Thu Jul  4 09:32:53 CST 2019
+KJ:~ kris$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.13 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE tysql
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_tysql    |
++--------------------+
+| CustCopy           |
+| CustNew            |
+| customeremaillist  |
+| Customers          |
+| OrderItems         |
+| orderitemsexpanded |
+| Orders             |
+| productcustomers   |
+| Products           |
+| vendorlocations    |
+| Vendors            |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> 
+mysql> CREATE PROCEDURE NewOrder @cust_id CHAR(10) AS
+    -> -- Insert new order
+    -> INSERT INTO Orders(cust_id)
+    -> VALUES(@cust_id)
+    -> -- Return order number
+    -> SELECT order_num = @@IDENTITY;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@cust_id CHAR(10) AS
+
+INSERT INTO Orders(cust_id)
+VALUES(@cust_id)
+
+SELECT order' at line 1
+mysql> -- 事务处理
+mysql> -- START TRANSACTION 
+mysql> -- ROLLBACK
+mysql> -- DELECTE FROM Orders;
+mysql> -- ROLLBACK;
+mysql> SHOW OrderItems
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OrderItems' at line 1
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.10 sec)
+
+mysql> SELECT * FROM Orders;
++-----------+---------------------+------------+
+| order_num | order_date          | cust_id    |
++-----------+---------------------+------------+
+|     20005 | 2012-05-01 00:00:00 | 1000000001 |
+|     20006 | 2012-01-12 00:00:00 | 1000000003 |
+|     20007 | 2012-01-30 00:00:00 | 1000000004 |
+|     20008 | 2012-02-03 00:00:00 | 1000000005 |
+|     20009 | 2012-02-08 00:00:00 | 1000000001 |
++-----------+---------------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> DESCRIBE Orders；
+    -> ;
+ERROR 1146 (42S02): Table 'tysql.orders；' doesn't exist
+mysql> DESCRIBE Orders;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| order_num  | int(11)  | NO   | PRI | NULL    |       |
+| order_date | datetime | NO   |     | NULL    |       |
+| cust_id    | char(10) | NO   | MUL | NULL    |       |
++------------+----------+------+-----+---------+-------+
+3 rows in set (0.12 sec)
+
+mysql> INSERT INTO Orders (order_num,order_date,cust_id) VALUES(12345,'2019-07-04 00:00:00','1000000007')
+    -> ;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`tysql`.`orders`, CONSTRAINT `FK_Orders_Customers` FOREIGN KEY (`cust_id`) REFERENCES `customers` (`cust_id`))
+mysql> SELECT * FROM customers;
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| cust_id    | cust_name     | cust_address         | cust_city | cust_state | cust_zip | cust_country | cust_contact       | cust_email            |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+| 1000000001 | Village Toys  | 200 Maple Lane       | Detroit   | MI         | 44444    | USA          | John Smith         | sales@villagetoys.com |
+| 1000000002 | Kids Place    | 333 South Lake Drive | Columbus  | OH         | 43333    | USA          | Michelle Green     | NULL                  |
+| 1000000003 | Fun4All       | 1 Sunny Place        | Muncie    | IN         | 42222    | USA          | Jim Jones          | jjones@fun4all.com    |
+| 1000000004 | Fun4All       | 829 Riverside Drive  | Phoenix   | AZ         | 88888    | USA          | Denise L. Stephens | dstephens@fun4all.com |
+| 1000000005 | The Toy Store | 4545 53rd Street     | Chicago   | IL         | 54545    | USA          | Kim Howard         | NULL                  |
++------------+---------------+----------------------+-----------+------------+----------+--------------+--------------------+-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO Orders (order_num,order_date,cust_id) VALUES(12345,'2019-07-04 00:00:00','1000000005')
+    -> ；
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '；' at line 2
+mysql> INSERT INTO Orders (order_num,order_date,cust_id) VALUES(12345,'2019-07-04 00:00:00','1000000005') ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> DESCRIBE OrderItems;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| order_num  | int(11)      | NO   | PRI | NULL    |       |
+| order_item | int(11)      | NO   | PRI | NULL    |       |
+| prod_id    | char(10)     | NO   | MUL | NULL    |       |
+| quantity   | int(11)      | NO   |     | NULL    |       |
+| item_price | decimal(8,2) | NO   |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql>  INSERT INTO OrderItems VALUES(12345,3,'BNBG03',250,2.49);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     12345 |          3 | BNBG03  |      250 |       2.49 |
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+19 rows in set (0.01 sec)
+
+mysql> SELECT * FROM Orders;
++-----------+---------------------+------------+
+| order_num | order_date          | cust_id    |
++-----------+---------------------+------------+
+|     12345 | 2019-07-04 00:00:00 | 1000000005 |
+|     20005 | 2012-05-01 00:00:00 | 1000000001 |
+|     20006 | 2012-01-12 00:00:00 | 1000000003 |
+|     20007 | 2012-01-30 00:00:00 | 1000000004 |
+|     20008 | 2012-02-03 00:00:00 | 1000000005 |
+|     20009 | 2012-02-08 00:00:00 | 1000000001 |
++-----------+---------------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> START TRANSACTION 
+    -> DELETE  OrderItems WHERE order_num=12345;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE  OrderItems WHERE order_num=12345' at line 2
+mysql> START TRANSACTION  DELETE  OrderItems WHERE order_num=12345 DELETE  Orders WHERE order_num=12345 COMMIT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE  OrderItems WHERE order_num=12345 DELETE  Orders WHERE order_num=12345 CO' at line 1
+mysql> begin;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE  OrderItems WHERE order_num=12345;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE order_num=12345' at line 1
+mysql> DELETE OrderItems WHERE order_num=12345;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE order_num=12345' at line 1
+mysql> START TRANSACTION  DELETE FROM OrderItems WHERE order_num=12345;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM OrderItems WHERE order_num=12345' at line 1
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> START TRANSACTION
+    -> DELETE FROM OrderItems WHERE order_num = 12345;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM OrderItems WHERE order_num = 12345' at line 2
+mysql> begin;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELETE FROM OrderItems WHERE order_num = 12345;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> DELETE FROM Orders WHERE order_num = 12345;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.01 sec)
+
+mysql> SELECT * FROM Orders;
++-----------+---------------------+------------+
+| order_num | order_date          | cust_id    |
++-----------+---------------------+------------+
+|     20005 | 2012-05-01 00:00:00 | 1000000001 |
+|     20006 | 2012-01-12 00:00:00 | 1000000003 |
+|     20007 | 2012-01-30 00:00:00 | 1000000004 |
+|     20008 | 2012-02-03 00:00:00 | 1000000005 |
+|     20009 | 2012-02-08 00:00:00 | 1000000001 |
++-----------+---------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> SAVEPOINT delete1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> ROLLBACK TO delete1;
+ERROR 1305 (42000): SAVEPOINT delete1 does not exist
+mysql> INSERT INTO Orders (order_num,order_date,cust_id) VALUES(12345,'2019-07-04 00:00:00','1000000005') ;
+Query OK, 1 row affected (0.04 sec)
+
+mysql>  INSERT INTO OrderItems VALUES(12345,3,'BNBG03',250,2.49);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     12345 |          3 | BNBG03  |      250 |       2.49 |
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Orders;
++-----------+---------------------+------------+
+| order_num | order_date          | cust_id    |
++-----------+---------------------+------------+
+|     12345 | 2019-07-04 00:00:00 | 1000000005 |
+|     20005 | 2012-05-01 00:00:00 | 1000000001 |
+|     20006 | 2012-01-12 00:00:00 | 1000000003 |
+|     20007 | 2012-01-30 00:00:00 | 1000000004 |
+|     20008 | 2012-02-03 00:00:00 | 1000000005 |
+|     20009 | 2012-02-08 00:00:00 | 1000000001 |
++-----------+---------------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> START TRANSACTION   
+    -> DELETE FROM OrderItems WHERE order_num = 12345;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELETE FROM OrderItems WHERE order_num = 12345' at line 2
+mysql> begin;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SAVEPOINT delete1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE FROM OrderItems WHERE order_num = 12345;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO delete1;
+ERROR 1305 (42000): SAVEPOINT delete1 does not exist
+mysql> begin;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> ROLLBACK TO delete1;
+ERROR 1305 (42000): SAVEPOINT delete1 does not exist
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.00 sec)
+
+mysql> SAVEPOINT delete1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM Orders;
++-----------+---------------------+------------+
+| order_num | order_date          | cust_id    |
++-----------+---------------------+------------+
+|     12345 | 2019-07-04 00:00:00 | 1000000005 |
+|     20005 | 2012-05-01 00:00:00 | 1000000001 |
+|     20006 | 2012-01-12 00:00:00 | 1000000003 |
+|     20007 | 2012-01-30 00:00:00 | 1000000004 |
+|     20008 | 2012-02-03 00:00:00 | 1000000005 |
+|     20009 | 2012-02-08 00:00:00 | 1000000001 |
++-----------+---------------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> DELETE FROM Orders WHERE order_num = 12345;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM Orders;
++-----------+---------------------+------------+
+| order_num | order_date          | cust_id    |
++-----------+---------------------+------------+
+|     20005 | 2012-05-01 00:00:00 | 1000000001 |
+|     20006 | 2012-01-12 00:00:00 | 1000000003 |
+|     20007 | 2012-01-30 00:00:00 | 1000000004 |
+|     20008 | 2012-02-03 00:00:00 | 1000000005 |
+|     20009 | 2012-02-08 00:00:00 | 1000000001 |
++-----------+---------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO delete1;
+ERROR 1305 (42000): SAVEPOINT delete1 does not exist
+mysql>  INSERT INTO OrderItems VALUES(12345,3,'BNBG03',250,2.49);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`tysql`.`orderitems`, CONSTRAINT `FK_OrderItems_Orders` FOREIGN KEY (`order_num`) REFERENCES `orders` (`order_num`))
+mysql> INSERT INTO OrderItems VALUES(12345,3,'BNBG03',250,2.49);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`tysql`.`orderitems`, CONSTRAINT `FK_OrderItems_Orders` FOREIGN KEY (`order_num`) REFERENCES `orders` (`order_num`))
+mysql> INSERT INTO Orders (order_num,order_date,cust_id) VALUES(12345,'2019-07-04 00:00:00','1000000005') ;
+Query OK, 1 row affected (0.08 sec)
+
+mysql>  INSERT INTO OrderItems VALUES(12345,3,'BNBG03',250,2.49);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> begin;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SAVEPOINT delete1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE FROM Orders WHERE order_num = 12345;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`tysql`.`orderitems`, CONSTRAINT `FK_OrderItems_Orders` FOREIGN KEY (`order_num`) REFERENCES `orders` (`order_num`))
+mysql> DELETE FROM OrderItems WHERE order_num = 12345;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM Orders;
++-----------+---------------------+------------+
+| order_num | order_date          | cust_id    |
++-----------+---------------------+------------+
+|     12345 | 2019-07-04 00:00:00 | 1000000005 |
+|     20005 | 2012-05-01 00:00:00 | 1000000001 |
+|     20006 | 2012-01-12 00:00:00 | 1000000003 |
+|     20007 | 2012-01-30 00:00:00 | 1000000004 |
+|     20008 | 2012-02-03 00:00:00 | 1000000005 |
+|     20009 | 2012-02-08 00:00:00 | 1000000001 |
++-----------+---------------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+18 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO delete1;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SELECT * FROM OrderItems;
++-----------+------------+---------+----------+------------+
+| order_num | order_item | prod_id | quantity | item_price |
++-----------+------------+---------+----------+------------+
+|     12345 |          3 | BNBG03  |      250 |       2.49 |
+|     20005 |          1 | BR01    |      100 |       5.49 |
+|     20005 |          2 | BR03    |      100 |      10.99 |
+|     20006 |          1 | BR01    |       20 |       5.99 |
+|     20006 |          2 | BR02    |       10 |       8.99 |
+|     20006 |          3 | BR03    |       10 |      11.99 |
+|     20007 |          1 | BR03    |       50 |      11.49 |
+|     20007 |          2 | BNBG01  |      100 |       2.99 |
+|     20007 |          3 | BNBG02  |      100 |       2.99 |
+|     20007 |          4 | BNBG03  |      100 |       2.99 |
+|     20007 |          5 | RGAN01  |       50 |       4.49 |
+|     20008 |          1 | RGAN01  |        5 |       4.99 |
+|     20008 |          2 | BR03    |        5 |      11.99 |
+|     20008 |          3 | BNBG01  |       10 |       3.49 |
+|     20008 |          4 | BNBG02  |       10 |       3.49 |
+|     20008 |          5 | BNBG03  |       10 |       3.49 |
+|     20009 |          1 | BNBG01  |      250 |       2.49 |
+|     20009 |          2 | BNBG02  |      250 |       2.49 |
+|     20009 |          3 | BNBG03  |      250 |       2.49 |
++-----------+------------+---------+----------+------------+
+19 rows in set (0.00 sec)
+
+mysql> --  
+mysql> RELEASE SAVEPOINT delete1;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
